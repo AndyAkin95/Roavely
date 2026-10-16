@@ -1,6 +1,6 @@
-/* Roavely browser bundle: ordered entrypoints. */
+/* Roavely ordered PWA modules */
 
-/* BEGIN app.js */
+/* app.js */
 const KEY='roavely-demo-v3';
 const seed={current:'japan27',trips:[{id:'japan27',emoji:'🇯🇵',name:'Japan 2027',destination:'Japan',start:'2027-04-03',end:'2027-04-17',budget:5200,route:['Tokyo','Hakone','Kyoto','Osaka','Hiroshima','Kumamoto'],invite:'JPN-27'},{id:'aus28',emoji:'🇦🇺',name:'Australia 2028',destination:'Australia',start:'2028-02-10',end:'2028-02-24',budget:4800,route:['Sydney','Wagga Wagga','Melbourne'],invite:'AUS-28'}],people:{japan27:['Andy','Mike','John','Matt'],aus28:['Andy']},ideas:{japan27:[{id:'i1',emoji:'🍜',title:'Ichiran Ramen — Shibuya',city:'Tokyo',cost:15,v:{Andy:'love',Mike:'yes',John:'yes'}},{id:'i2',emoji:'🦌',title:'Day trip to Nara',city:'Kyoto',cost:60,v:{Andy:'yes',Mike:'maybe',Matt:'yes'}},{id:'i3',emoji:'🌃',title:'Shibuya Sky at sunset',city:'Tokyo',cost:20,v:{Andy:'love',Mike:'love',John:'yes',Matt:'yes'}},{id:'i4',emoji:'⛩️',title:'Fushimi Inari early morning',city:'Kyoto',cost:0,v:{Andy:'love',John:'love'}}],aus28:[]},decisions:{japan27:[{id:'d1',title:'Pick our Tokyo hotel',options:['Shibuya base — $183/night','Shinjuku base — $169/night','Ginza base — $207/night'],votes:{Andy:0,Mike:0,John:1,Matt:0}},{id:'d2',title:'Free day: Fuji or more Tokyo?',options:['Mt. Fuji day trip','More Tokyo','Nikko'],votes:{Andy:0,Mike:0,John:1}}],aus28:[]},check:{japan27:[['Book international flights',true],['Choose Tokyo hotel',false],['Reserve Shinkansen seats',false],['Buy eSIMs',false],['Share emergency contacts',false]],aus28:[]},expenses:{japan27:[{title:'Tokyo hotel deposit',amount:1640,paid:'Mike',split:4,settled:['Mike']},{title:'TeamLab tickets',amount:128,paid:'Andy',split:4,settled:['Andy','John']}],aus28:[]},itinerary:{japan27:[{day:'Day 1 · Tokyo',items:[['3:10 PM','Land at Haneda','✈️'],['5:00 PM','Check in & reset','🏨'],['7:00 PM','Shibuya dinner','🍜']]},{day:'Day 2 · Tokyo',items:[['8:00 AM','Meiji Shrine','⛩️'],['10:30 AM','Harajuku & Omotesando','🛍️'],['5:00 PM','Shibuya Sky','🌃']]},{day:'Day 6 · Kyoto',items:[['7:15 AM','Leave hotel','🚶'],['8:03 AM','Train to Arashiyama','🚆'],['8:35 AM','Bamboo Grove','🎋'],['10:00 AM','Tenryu-ji','🏯']]}],aus28:[]},reservations:{japan27:[['✈️','Flight · JFK → HND','Apr 2 · confirmation pending'],['🏨','Tokyo hotel','Apr 3–7 · shortlist not final'],['🎟️','teamLab Borderless','Apr 5 · 4 tickets']],aus28:[]}};
 let s=(()=>{try{return JSON.parse(localStorage.getItem(KEY))||structuredClone(seed)}catch{return structuredClone(seed)}})();let tab='home',planMode='ideas',modal=null;
@@ -224,10 +224,9 @@ function render(){let body=tab==='home'?home():tab==='plan'?plan():tab==='map'?m
 })();
 render();
 
-/* END app.js */
 
 
-/* BEGIN phase3-discover.js */
+/* phase3-discover.js */
 (function phase3Discovery() {
   const oldRender=render, oldHome=home;
   const candidates=[
@@ -362,10 +361,9 @@ render();
   save();render();
 })();
 
-/* END phase3-discover.js */
 
 
-/* BEGIN phase3-crew.js */
+/* phase3-crew.js */
 (function addCrew() {
   const prevRender=render,prevPlan=plan,prevModal=modalHTML;
   const api=window.roavelyNext;
@@ -439,10 +437,9 @@ render();
   save();render();
 })();
 
-/* END phase3-crew.js */
 
 
-/* BEGIN phase3-planner.js */
+/* phase3-planner.js */
 (function phase3Planner(){
   const previousRender=render,previousHome=home;
   const api=window.roavelyNext;
@@ -527,10 +524,9 @@ render();
   save();render();
 })();
 
-/* END phase3-planner.js */
 
 
-/* BEGIN phase4-board.js */
+/* phase4-board.js */
 (function addAdventureBoard(){
   const oldRender=render,oldPlan=plan,oldHome=home,oldModal=modalHTML;
   const api=window.roavelyNext;
@@ -625,10 +621,9 @@ render();
   save();render();
 })();
 
-/* END phase4-board.js */
 
 
-/* BEGIN phase4-finance.js */
+/* phase4-finance.js */
 (function addTripFinancesAndBookings(){
   const oldRender=render,oldModal=modalHTML,oldHome=home;
   const api=window.roavelyNext;
@@ -808,10 +803,9 @@ render();
   save();render();
 })();
 
-/* END phase4-finance.js */
 
 
-/* BEGIN phase4-personal.js */
+/* phase4-personal.js */
 (function(){
 const prev=render,prevHome=home,prevModal=modalHTML,api=window.roavelyNext;
 const who=()=>s.profile?.name||'Andy';
@@ -826,10 +820,9 @@ modalHTML=function(){if(modal==='wish')return sheet('Add a dream','<form onsubmi
 home=function(){return prevHome().replace('</main>','<div class="feature-grid"><button class="feature-tile" onclick="tab=\'wishlist\';render()"><span>🌎</span><b>Bucket list</b><small>Dream bigger</small></button><button class="feature-tile" onclick="tab=\'passport\';render()"><span>🛂</span><b>Travel passport</b><small>Places visited</small></button></div></main>')};
 render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='wishlist'?wishlist():passport());return}prev()};save();render();
 })();
-/* END phase4-personal.js */
 
 
-/* BEGIN phase4-packing.js */
+/* phase4-packing.js */
 (function addPackingOnly(){
  const older=render,oldHome=home,oldModal=modalHTML,api=window.roavelyNext;
  function items(){s.extras=s.extras||{};s.extras.packing=s.extras.packing||{};return s.extras.packing[s.current]||(s.extras.packing[s.current]=[])}
@@ -849,10 +842,9 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
  save();render();
 })();
 
-/* END phase4-packing.js */
 
 
-/* BEGIN phase4-location.js */
+/* phase4-location.js */
 (function addLocationTools(){
  const prev=render,prevHome=home,prevModal=modalHTML,api=window.roavelyNext;
  function localCheckins(){s.extras=s.extras||{};s.extras.checkins=s.extras.checkins||{};return s.extras.checkins[s.current]||(s.extras.checkins[s.current]=[])}
@@ -882,10 +874,9 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
  save();render();
 })();
 
-/* END phase4-location.js */
 
 
-/* BEGIN phase4-memories.js */
+/* phase4-memories.js */
 (function addMemoryAlbum(){
  const oldRender=render,oldHome=home,api=window.roavelyNext;
  let urls=[];
@@ -954,10 +945,9 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
  render();
 })();
 
-/* END phase4-memories.js */
 
 
-/* BEGIN cloud-core.js */
+/* cloud-core.js */
 (function buildCloudCore(){
   const SUPABASE_URL='https://nnpydavlkfzbpwetyclf.supabase.co';
   const KEY='sb_publishable_KhQWXpXZkGpifkSYiFspaQ_Ja6V1Nec';
@@ -1030,7 +1020,7 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
        ${fieldLabel('Password','<input type="password" name="password" autocomplete="'+(cloud.signup?'new-password':'current-password')+'" minlength="8" required>')}
        ${cloud.signup?'<label class="cloud-terms"><input type="checkbox" name="accept_terms" value="on" required><span>I agree to the <a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a> (2026-10).</span></label>':''}
        <button class="btn blue full-width" ${cloud.busy?'disabled':''}>${cloud.signup?'Create account':'Log in'}</button>
-      </form>${!cloud.signup?'<button type="button" class="cloud-forgot" onclick="cloudForgotPassword()">Forgot password?</button>':''}<p class="cloud-muted">Registration requires email verification and administrator approval. Check your Gmail Inbox, Updates and Spam for the confirmation email.</p><form onsubmit="cloudResendSignup(event)">${fieldLabel('Resend the verification email','<input type="email" name="resend_email" required value="'+escapeHtml(cloud.signupEmail)+'" placeholder="Registered email">')}<button class="btn secondary full-width">Resend confirmation email</button></form>`;
+      </form>${!cloud.signup?'<a class="cloud-forgot" href="./recover.html">Forgot password? Reset it here →</a>':''}<p class="cloud-muted">Registration requires email verification and administrator approval. Check your Gmail Inbox, Updates and Spam for the confirmation email.</p><form onsubmit="cloudResendSignup(event)">${fieldLabel('Resend the verification email','<input type="email" name="resend_email" required value="'+escapeHtml(cloud.signupEmail)+'" placeholder="Registered email">')}<button class="btn secondary full-width">Resend confirmation email</button></form>`;
     if(cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')return pendingPanelHTML();
     const list=cloud.trips;
     return `<div class="cloud-account"><b>${escapeHtml(cloud.profile?.display_name||cloud.user.email||'Traveler')}</b><small>${escapeHtml(cloud.user.email)}</small></div>
@@ -1350,10 +1340,9 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
   void boot();
 })();
 
-/* END cloud-core.js */
 
 
-/* BEGIN cloud-actions.js */
+/* cloud-actions.js */
 (function buildCloudActions(){
   const cloud=window.roavelyCloud;
   const isLive=()=>cloud?.isActive?.()===true;
@@ -1561,10 +1550,9 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
   };
 })();
 
-/* END cloud-actions.js */
 
 
-/* BEGIN trip-theme.js */
+/* trip-theme.js */
 (function travelThemeEngine(){
   const priorRender=render;
   const themes=[
@@ -1603,4 +1591,3 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
   window.roavelyTheme={active:()=>selected,paint};
   paint();
 })();
-/* END trip-theme.js */
