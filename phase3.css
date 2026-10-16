@@ -1,0 +1,27 @@
+
+/* Roavely: collaborative planning, match engine and travel mode */
+.feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 20px}
+.feature-tile{border:1px solid #e2e9f5;box-shadow:0 2px 12px #15233b08;background:#fff;color:var(--ink);border-radius:18px;text-align:left;padding:15px;min-height:112px;cursor:pointer;display:flex;flex-direction:column;align-items:flex-start;gap:5px}
+.feature-tile>span{font-size:25px;line-height:1.2}.feature-tile b{font-size:14px;margin-top:auto}.feature-tile small{font-size:11px;color:var(--muted)}
+.feature-tile:focus-visible,.btn:focus-visible,.vote:focus-visible,.tab:focus-visible{outline:3px solid #819dff;outline-offset:2px}
+.preview-note{display:inline-flex;margin-top:10px;letter-spacing:.7px;font-size:10px;font-weight:900;color:#b57616;border:1px solid #eedbbd;border-radius:30px;padding:6px 9px;background:#fff8ed}
+.page-heading h2{max-width:580px}.page-heading p{max-width:600px}
+.match-card{padding:17px}.match-icon{font-size:30px;background:#e9f0ff;border-radius:15px;width:55px;height:55px;display:grid;place-items:center;flex:none}
+.score-pill{background:#e8f4ed;color:#167b59;border-radius:14px;font-size:19px;line-height:1;font-weight:900;padding:8px 10px;white-space:nowrap;text-align:center}
+.score-pill small{display:block;font-size:9px;margin-top:5px;letter-spacing:.3px}
+.match-card .progress{margin:13px 0 4px}.match-card .progress i{background:#21a675}
+.match-details{border-top:1px solid #edf1f6;padding-top:10px;margin:12px 0;color:#43506b;font-size:12px}
+.match-details summary{font-weight:800;cursor:pointer;margin:2px 0 10px}.profile-match{padding:5px 2px;border-bottom:1px solid #f0f2f6}.profile-match small{color:#8c97a8}.profile-match b{font-size:12px}
+.swipe-buttons{display:flex;gap:8px;margin-top:15px}.swipe-buttons .btn{flex:1;padding:11px 5px;font-size:12px}
+.swipe-card{text-align:center;touch-action:pan-y;user-select:none;min-height:340px;padding:25px 15px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(165deg,#eff3ff,#fff)}
+.swipe-big{font-size:95px;line-height:1.3;margin:10px}.swipe-card h2{font-size:31px;letter-spacing:-1px;margin:6px 0}.swipe-card p{font-size:14px;color:#63718a}.swipe-card .tag-row{justify-content:center;margin-top:15px}.swipe-card .score-pill{margin-top:10px}
+.wildcard-card{border-radius:25px;padding:38px 20px;text-align:center;background:radial-gradient(circle at top left,#506dc2,#192b4c);color:#fff;min-height:330px;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.wildcard-card .sub{color:#c8d6f8}.wildcard-card h2{font-size:27px;line-height:1.25;margin:11px 0}.wildcard-card p{font-size:13px;color:#dae3fb}.wildcard-emoji{font-size:78px}
+.four-tabs{gap:2px}.four-tabs button{padding:10px 4px;font-size:12px;min-width:0}
+.chat-messages{min-height:130px;max-height:420px;overflow-y:auto;padding:10px 0;margin:10px 0;border-top:1px solid #eef1f6;border-bottom:1px solid #eef1f6}
+.chat-msg{background:#f2f5fb;border-radius:13px;padding:12px;margin-bottom:9px;overflow-wrap:anywhere;font-size:14px;line-height:1.4}.chat-msg b{font-size:12px;color:#2849a7}.chat-msg .sub{margin:3px 0 7px}
+.smart-row{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #eef1f5;padding:12px 0}.smart-row>div{min-width:0}.smart-row b{font-size:13px;overflow-wrap:anywhere}.smart-row button{flex:none;font-size:12px}
+.savings-card{margin-top:20px}.savings-card .progress{margin:12px 0 17px}.savings-line{font-weight:900;font-size:27px;margin-top:15px}.savings-line span{font-size:14px;color:#8a95a6}
+.savings-controls{display:flex;align-items:flex-end;gap:10px;margin-top:13px}.savings-controls label{display:block;font-size:12px;font-weight:850;color:#6f7a8a;flex:1;min-width:0}.savings-controls input{display:block;width:100%;margin-top:5px;padding:12px;border-radius:12px;border:1px solid #dfe5ed;font-size:16px}.savings-controls .btn{padding:14px;flex:none}
+.trip-now .event{margin-top:15px;padding:6px 0;border-bottom:1px solid #eef1f6}
+@media(max-width:390px){.feature-tile{padding:12px;min-height:104px}.match-icon{width:43px;height:43px;font-size:24px}.swipe-buttons{gap:5px}.swipe-buttons .btn{font-size:11px}.page-heading h2{font-size:26px}}
