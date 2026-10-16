@@ -5,7 +5,7 @@
   const BACKUP='roavely-local-snapshot-v1';
   const isUuid=x=>/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(x||'');
   const escapeHtml=x=>String(x??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  const clientInfo={client:null,user:null,profile:null,online:false,loading:true,trips:[],activeId:null,drawer:false,signup:false,message:'',error:'',pendingInvite:null,channel:null,busy:false,booted:false,access:null,queue:[],signupEmail:''};
+  const clientInfo={client:null,user:null,profile:null,online:false,loading:true,trips:[],activeId:null,drawer:false,signup:false,message:'',error:'',pendingInvite:null,channel:null,busy:false,booted:false,access:null,queue:[],signupEmail:'',recovering:false,recoveryStep:'request',recoveryEmail:''};
   window.roavelyCloud=clientInfo;
   const cloud=clientInfo;
   const active=()=>!!cloud.user&&cloud.access?.status==='approved'&&cloud.access?.accepted_terms_version==='2026-10'&&isUuid(s.current)&&cloud.trips.some(t=>t.id===s.current);
@@ -18,8 +18,8 @@
   };
   const oldTop=roavelyHeader;
   roavelyHeader=function(){
-    const label=cloud.loading?'Connecting…':cloud.user?((cloud.access?.status!=='approved'||!cloud.access?.accepted_terms_version==='2026-10')?'⏳ Finish setup':active()?'☁ Live trip':'☁ Choose trip'):'☁ Sign in';
-    return oldTop()+`<div class="cloud-toolbar"><span class="cloud-state">${escapeHtml(active()?'Shared online trip':cloud.user&&(cloud.access?.status!=='approved'||!cloud.access?.accepted_terms_version==='2026-10')?'Account setup incomplete':'Local preview · not synced')}</span><div class="cloud-controls"><button type="button" onclick="cloudOpen()">${escapeHtml(label)}</button>${active()?'<button type="button" onclick="cloudRefresh()">⟳</button>':''}</div></div>`;
+    const label=cloud.loading?'Connecting…':cloud.user?((cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')?'⏳ Finish setup':active()?'☁ Live trip':'☁ Choose trip'):'☁ Sign in';
+    return oldTop()+`<div class="cloud-toolbar"><span class="cloud-state">${escapeHtml(active()?'Shared online trip':cloud.user&&(cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')?'Account setup incomplete':'Local preview · not synced')}</span><div class="cloud-controls"><button type="button" onclick="cloudOpen()">${escapeHtml(label)}</button>${active()?'<button type="button" onclick="cloudRefresh()">⟳</button>':''}</div></div>`;
   };
   window.cloudOpen=()=>{cloud.drawer=true;renderPanel()};
   window.cloudClose=()=>{cloud.drawer=false;document.getElementById('cloud-panel')?.remove()};
@@ -51,7 +51,7 @@
        ${cloud.signup?'<label class="cloud-terms"><input type="checkbox" name="accept_terms" value="on" required><span>I agree to the <a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a> (2026-10).</span></label>':''}
        <button class="btn blue full-width" ${cloud.busy?'disabled':''}>${cloud.signup?'Create account':'Log in'}</button>
       </form><p class="cloud-muted">Registration requires email verification and administrator approval. Check your Gmail Inbox, Updates and Spam for the confirmation email.</p><form onsubmit="cloudResendSignup(event)">${fieldLabel('Resend the verification email','<input type="email" name="resend_email" required value="'+escapeHtml(cloud.signupEmail)+'" placeholder="Registered email">')}<button class="btn secondary full-width">Resend confirmation email</button></form>`;
-    if(cloud.access?.status!=='approved'||!cloud.access?.accepted_terms_version==='2026-10')return pendingPanelHTML();
+    if(cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')return pendingPanelHTML();
     const list=cloud.trips;
     return `<div class="cloud-account"><b>${escapeHtml(cloud.profile?.display_name||cloud.user.email||'Traveler')}</b><small>${escapeHtml(cloud.user.email)}</small></div>
     ${fieldLabel('Display name',`<form class="cloud-inline" onsubmit="cloudRename(event)"><input name="name" maxlength="80" required value="${escapeHtml(cloud.profile?.display_name||'Traveler')}"><button class="btn secondary">Save</button></form>`)}
