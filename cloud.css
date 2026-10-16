@@ -1,0 +1,42 @@
+
+/* Supabase account shell and shareable group controls */
+.cloud-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 18px;background:linear-gradient(115deg,#e8efff,#f8faff);border-bottom:1px solid #dfe6f5}
+.cloud-state{font-size:11px;color:#4e6482;font-weight:800;letter-spacing:.15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cloud-controls{display:flex;gap:6px}
+.cloud-controls button{border:1px solid #a7bee8;border-radius:22px;background:#fff;padding:8px 11px;white-space:nowrap;color:#1a428c;font-size:12px;font-weight:800;cursor:pointer}
+.cloud-controls button:active{transform:translateY(1px)}
+.cloud-panel{position:fixed;inset:0;z-index:99999;display:flex;align-items:flex-end;justify-content:center}
+.cloud-overlay{position:absolute;inset:0;background:rgba(8,18,36,.63);backdrop-filter:blur(3px)}
+.cloud-sheet{z-index:1;position:relative;background:#f9fbff;color:#192946;border-radius:26px 26px 0 0;width:100%;max-width:680px;max-height:min(92dvh,920px);overflow:hidden;box-shadow:0 -15px 70px rgba(9,20,48,.22);display:flex;flex-direction:column;padding-bottom:env(safe-area-inset-bottom)}
+.cloud-sheet>header{display:flex;align-items:center;justify-content:space-between;padding:20px 23px 16px;background:#fff;border-bottom:1px solid #e8edf8}
+.cloud-sheet>header div{display:flex;flex-direction:column;gap:3px}
+.cloud-sheet>header b{font-size:19px;font-weight:900;letter-spacing:-.3px}
+.cloud-sheet>header small{font-size:12px;color:#708099}
+.cloud-sheet>header>button{width:34px;height:34px;border:0;border-radius:50%;background:#f1f4f9;color:#3c4c61;cursor:pointer;font-size:17px}
+.cloud-content{padding:19px 22px 26px;overflow-y:auto}
+.cloud-muted{color:#687992;font-size:13px;line-height:1.5}
+.cloud-content form{display:grid;gap:12px;margin-top:12px}
+.cloud-field{display:grid;gap:6px;color:#3c4d65;font-size:12px;font-weight:800}
+.cloud-field input,.cloud-field select,.cloud-invite input{width:100%;border:1px solid #d7e1ef;border-radius:12px;background:white;min-height:44px;padding:10px 12px;color:#142847;font-size:15px}
+.cloud-field input:focus{outline:2px solid #567ff6}
+.cloud-segments{display:grid;grid-template-columns:1fr 1fr;gap:4px;border-radius:13px;background:#e8edf7;padding:5px;margin:16px 0}
+.cloud-segments button{border:0;background:none;padding:10px;cursor:pointer;color:#61748e;font-weight:800;border-radius:10px}
+.cloud-segments button.selected{background:white;color:#21469e;box-shadow:0 2px 8px #1c2d510f}
+.cloud-account{display:flex;flex-direction:column;gap:3px;margin-bottom:15px}
+.cloud-account b{font-size:20px}.cloud-account small{color:#8493a7;font-size:12px}
+.cloud-inline{display:flex!important;gap:8px!important;margin-top:2px!important}.cloud-inline input{flex:1;min-width:0}.cloud-inline button{flex:none}
+.cloud-heading{display:flex;align-items:center;justify-content:space-between;margin:25px 0 12px;font-size:15px}
+.cloud-heading span{font-size:12px;color:#61738e;background:#eaf0fa;padding:5px 8px;border-radius:20px}
+.cloud-trip{width:100%;display:flex;justify-content:space-between;align-items:center;text-align:left;gap:12px;background:white;padding:14px 15px;border:1px solid #e0e8f4;border-radius:14px;margin-bottom:8px;color:#28405f;cursor:pointer;font-size:14px;font-weight:850}
+.cloud-trip small{display:block;color:#8494ab;font-size:11px;font-weight:500;margin-top:4px}
+.cloud-trip.active{border-color:#6888ef;background:#edf2ff}
+.cloud-card{background:white;border:1px solid #e3e9f5;padding:17px 16px;border-radius:16px;margin-top:16px}
+.cloud-card b{font-size:14px}
+.cloud-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.cloud-invite{display:flex;gap:8px;margin-top:12px}.cloud-invite input{font-size:12px;min-width:0}.cloud-invite button{flex:none}
+.cloud-logout{background:#fff;border:1px solid #e7bac0;color:#b13b56;border-radius:12px;width:100%;padding:12px;margin:20px 0 0;font-weight:800;cursor:pointer}
+.cloud-error,.cloud-success{margin:5px 0 14px;font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.cloud-error{color:#b72f44}.cloud-success{color:#187e5b}
+.cloud-wait{color:#6d7e91;font-size:14px;padding:20px 0}
+@media(min-width:768px){.cloud-panel{align-items:center}.cloud-sheet{border-radius:22px;max-height:90vh}}
+@media(max-width:370px){.cloud-toolbar{padding:8px 11px}.cloud-sheet>header{padding:17px}.cloud-content{padding:16px 14px}.cloud-pair{grid-template-columns:1fr}}
