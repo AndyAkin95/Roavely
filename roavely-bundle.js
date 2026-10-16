@@ -968,7 +968,7 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
   const clientInfo={client:null,user:null,profile:null,online:false,loading:true,trips:[],activeId:null,drawer:false,signup:false,message:'',error:'',pendingInvite:null,channel:null,busy:false,booted:false,access:null,queue:[],signupEmail:''};
   window.roavelyCloud=clientInfo;
   const cloud=clientInfo;
-  const active=()=>!!cloud.user&&cloud.access?.status==='approved'&&isUuid(s.current)&&cloud.trips.some(t=>t.id===s.current);
+  const active=()=>!!cloud.user&&cloud.access?.status==='approved'&&cloud.access?.accepted_terms_version==='2026-10'&&isUuid(s.current)&&cloud.trips.some(t=>t.id===s.current);
   cloud.isActive=active;
   cloud.current=()=>active()?s.current:null;
   cloud.alert=(msg,isErr=false)=>{
@@ -978,17 +978,17 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
   };
   const oldTop=roavelyHeader;
   roavelyHeader=function(){
-    const label=cloud.loading?'Connecting…':cloud.user?(cloud.access?.status!=='approved'?'⏳ Pending approval':active()?'☁ Live trip':'☁ Choose trip'):'☁ Sign in';
-    return oldTop()+`<div class="cloud-toolbar"><span class="cloud-state">${escapeHtml(active()?'Shared online trip':cloud.user&&cloud.access?.status!=='approved'?'Account awaiting approval':'Local preview · not synced')}</span><div class="cloud-controls"><button type="button" onclick="cloudOpen()">${escapeHtml(label)}</button>${active()?'<button type="button" onclick="cloudRefresh()">⟳</button>':''}</div></div>`;
+    const label=cloud.loading?'Connecting…':cloud.user?((cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')?'⏳ Finish setup':active()?'☁ Live trip':'☁ Choose trip'):'☁ Sign in';
+    return oldTop()+`<div class="cloud-toolbar"><span class="cloud-state">${escapeHtml(active()?'Shared online trip':cloud.user&&(cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')?'Account setup incomplete':'Local preview · not synced')}</span><div class="cloud-controls"><button type="button" onclick="cloudOpen()">${escapeHtml(label)}</button>${active()?'<button type="button" onclick="cloudRefresh()">⟳</button>':''}</div></div>`;
   };
   window.cloudOpen=()=>{cloud.drawer=true;renderPanel()};
   window.cloudClose=()=>{cloud.drawer=false;document.getElementById('cloud-panel')?.remove()};
   function fieldLabel(label,input){return `<label class="cloud-field"><span>${label}</span>${input}</label>`}
   function pendingPanelHTML(){
   const state=cloud.access?.status||'pending',accepted=cloud.access?.accepted_terms_version==='2026-10';
-  const heading=state==='rejected'?'Application declined':state==='suspended'?'Account suspended':'Waiting for administrator approval';
+  const heading=state==='rejected'?'Application declined':state==='suspended'?'Account suspended':state==='approved'&&!accepted?'Complete setup: accept the Terms':'Waiting for administrator approval';
   return `<div class="cloud-account"><b>${escapeHtml(cloud.profile?.display_name||cloud.user.email)}</b><small>${escapeHtml(cloud.user.email)}</small></div>
-  <div class="cloud-pending"><b>${escapeHtml(heading)}</b><p>Email verification is separate from administrator approval. Your account cannot join or create real trips until approved.</p>
+  <div class="cloud-pending"><b>${escapeHtml(heading)}</b><p>${state==='approved'&&!accepted?'Your email is verified and your role is ready. Review and accept the current Terms & Conditions below to activate access.':'Email verification is separate from administrator approval. Your account cannot join or create real trips until approved.'}</p>
   ${accepted?'<p class="cloud-success">✓ Terms & Conditions accepted</p>':`<form onsubmit="cloudAcceptTerms(event)"><label class="cloud-terms"><input type="checkbox" name="agrees" value="on" required> <span>I accept the <a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms & Conditions</a> (2026-10).</span></label><button class="btn blue full-width">Accept the Terms</button></form>`}
   <button type="button" class="btn secondary full-width" onclick="cloudRefresh()">Check approval status</button></div>
   <button type="button" class="cloud-logout" onclick="cloudSignOut()">Sign out</button>`;
@@ -1011,7 +1011,7 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
        ${cloud.signup?'<label class="cloud-terms"><input type="checkbox" name="accept_terms" value="on" required><span>I agree to the <a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a> (2026-10).</span></label>':''}
        <button class="btn blue full-width" ${cloud.busy?'disabled':''}>${cloud.signup?'Create account':'Log in'}</button>
       </form><p class="cloud-muted">Registration requires email verification and administrator approval. Check your Gmail Inbox, Updates and Spam for the confirmation email.</p><form onsubmit="cloudResendSignup(event)">${fieldLabel('Resend the verification email','<input type="email" name="resend_email" required value="'+escapeHtml(cloud.signupEmail)+'" placeholder="Registered email">')}<button class="btn secondary full-width">Resend confirmation email</button></form>`;
-    if(cloud.access?.status!=='approved')return pendingPanelHTML();
+    if(cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')return pendingPanelHTML();
     const list=cloud.trips;
     return `<div class="cloud-account"><b>${escapeHtml(cloud.profile?.display_name||cloud.user.email||'Traveler')}</b><small>${escapeHtml(cloud.user.email)}</small></div>
     ${fieldLabel('Display name',`<form class="cloud-inline" onsubmit="cloudRename(event)"><input name="name" maxlength="80" required value="${escapeHtml(cloud.profile?.display_name||'Traveler')}"><button class="btn secondary">Save</button></form>`)}
@@ -1076,8 +1076,8 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
       const state=await cloud.client.from('account_access').select('*').eq('user_id',cloud.user.id).maybeSingle();
       if(state.error)throw state.error;
       cloud.access=state.data;
-      if(cloud.access?.status==='approved'){await loadTrips();if(cloud.access.role==='admin')await loadAdminQueue();}
-      else{cloud.trips=[];cloud.activeId=null;cloud.drawer=true;cloud.message='Your account is awaiting administrator approval.';}
+      if(cloud.access?.status==='approved'&&cloud.access?.accepted_terms_version==='2026-10'){await loadTrips();if(cloud.access.role==='admin')await loadAdminQueue();}
+      else{cloud.trips=[];cloud.activeId=null;cloud.drawer=true;cloud.message=cloud.access?.status==='approved'?'Please accept the Terms & Conditions to activate your account.':'Your account is awaiting administrator approval.';}
       cloud.online=true;
       cloud.error='';
     }catch(error){cloud.error=error.message||String(error)}
@@ -1109,7 +1109,7 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
   }
   const check=(result,name)=>{if(result.error)throw new Error(name+': '+result.error.message);return result.data||[]};
   async function loadTrips(selected){
-    if(!cloud.user||cloud.access?.status!=='approved')return;
+    if(!cloud.user||cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')return;
     const list=check(await cloud.client.from('trips').select('id,owner_id,title,destination,starts_on,ends_on,budget_per_person').order('created_at',{ascending:false}),'Trips');
     cloud.trips=list;
     if(!list.length){cloud.activeId=null;return}
@@ -1239,7 +1239,7 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
     try{cloud.pendingInvite=token&&/^[a-f0-9]{64}$/.test(token)?token:sessionStorage.getItem('roavely-invite-token')}catch{}
   }
   async function loadAdminQueue(){
- if(cloud.access?.role!=='admin'||cloud.access?.status!=='approved')return;
+ if(cloud.access?.role!=='admin'||cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')return;
  const {data,error}=await cloud.client.rpc('list_roavely_access');
  if(error)throw error;
  cloud.queue=(data||[]).filter(x=>x.status==='pending'||x.status==='approved');
