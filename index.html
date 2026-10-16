@@ -27,6 +27,7 @@
     window.__roavelyBootErrors=[];
     function roavelyStartupError(message){
       window.__roavelyBootErrors.push(String(message).slice(0,400));
+      message=window.__roavelyBootErrors[0];
       var note=document.getElementById('roavely-boot-note');
       if(note)note.textContent='Startup error: '+String(message).slice(0,280);
       var retry=document.getElementById('roavely-boot-retry');if(retry)retry.style.display='block';
@@ -66,18 +67,7 @@
 </head>
 <body>
   <div id="app"><div class="roavely-boot"><div class="roavely-boot-inner"><div class="roavely-boot-icon">R</div><h1>Roavely</h1><p>Connecting your adventures…</p><div class="roavely-boot-status" id="roavely-boot-note">Loading your travel planner</div><button id="roavely-boot-retry" onclick="roavelyRepair()">Retry / Refresh App</button></div></div></div>
-  <script src="./app.js?v=3"></script>
-  <script src="./phase3-discover.js?v=3"></script>
-  <script src="./phase3-crew.js?v=3"></script>
-  <script src="./phase3-planner.js?v=3"></script>
-  <script src="./phase4-board.js?v=3"></script>
-  <script src="./phase4-finance.js?v=3"></script>
-  <script src="./phase4-personal.js?v=3"></script>
-  <script src="./phase4-packing.js?v=3"></script>
-  <script src="./phase4-location.js?v=3"></script>
-  <script src="./phase4-memories.js?v=3"></script>
-  <script src="./cloud-core.js?v=3"></script>
-  <script src="./cloud-actions.js?v=3"></script>
+  <script src="./roavely-bundle.js?v=5"></script>
   <script>if ('serviceWorker' in navigator) addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));</script>
 </body>
 </html>
