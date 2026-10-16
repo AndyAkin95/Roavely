@@ -16,8 +16,8 @@
     cloud.error=isErr?msg:'';
     const n=document.getElementById('cloud-feedback');if(n){n.textContent=msg;n.className=isErr?'cloud-error':'cloud-success'}
   };
-  const oldTop=top;
-  top=function(){
+  const oldTop=roavelyHeader;
+  roavelyHeader=function(){
     const label=cloud.loading?'Connecting…':cloud.user?(active()?'☁ Live trip':'☁ Choose trip'):'☁ Sign in';
     return oldTop()+`<div class="cloud-toolbar"><span class="cloud-state">${escapeHtml(active()?'Shared online trip':'Local preview · not synced')}</span><div class="cloud-controls"><button type="button" onclick="cloudOpen()">${escapeHtml(label)}</button>${active()?'<button type="button" onclick="cloudRefresh()">⟳</button>':''}</div></div>`;
   };
