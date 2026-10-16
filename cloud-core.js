@@ -337,6 +337,8 @@
    renderPanel();
  }catch(error){fail(error)}
 };
+  window.cloudForgotPassword=()=>{cloud.recovering=true;cloud.recoveryStep='request';cloud.error='';cloud.drawer=true;renderPanel()};
+  window.cloudCancelRecovery=()=>{cloud.recovering=false;cloud.error='';cloud.message='';renderPanel()};
   async function boot(){
     readInvite();
     try{
