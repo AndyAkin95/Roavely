@@ -57,7 +57,7 @@ function render(){let body=tab==='home'?home():tab==='plan'?plan():tab==='map'?m
   let pendingIdea=null;
   let editDayIndex=null;
   const person=()=>s.profile.name.trim()||'Traveler';
-  const cash=v=>'+Number(v||0).toLocaleString('en-US',{maximumFractionDigits:0});
+  const cash=v=>String.fromCharCode(36)+Number(v||0).toLocaleString('en-US',{maximumFractionDigits:0});
   const matchScore=x=>(x.tags||[]).filter(tag=>s.profile.interests.includes(tag)).length;
   const sortMatch=a=>a.slice().sort((a,b)=>matchScore(b)-matchScore(a)||a.title.localeCompare(b.title));
   const oldModal=modalHTML;
@@ -66,7 +66,7 @@ function render(){let body=tab==='home'?home():tab==='plan'?plan():tab==='map'?m
     return `<div class="top"><div class="brand"><div><h1>Roavely<span class="brand-star">✦</span></h1><small>Plan together. Go anywhere.</small></div><button class="avatar" aria-label="Edit your travel profile" onclick="tab='profile';render()">${esc(person().slice(0,1).toUpperCase())}</button></div><div class="top-trip"><select class="trip-select" aria-label="Current trip" onchange="switchTrip(this.value)">${s.trips.map(t=>`<option value="${esc(t.id)}" ${t.id===s.current?'selected':''}>${t.emoji} ${esc(t.name)}</option>`).join('')}</select><span class="demo-label">LOCAL PREVIEW</span></div></div>`;
   };
   nav=function(){
-    return `<nav class="tabs"><div class="tabs-inner">${[['home','⌂','Home'],['discover','✦','Discover'],['plan','♥','Group'],['itinerary','☷','Itinerary'],['budget',','Budget']].map(x=>`<button class="tab ${tab===x[0]?'active':''}" onclick="tab='${x[0]}';render()"><span>${x[1]}</span>${x[2]}</button>`).join('')}</div></nav>`;
+    return `<nav class="tabs"><div class="tabs-inner">${[['home','⌂','Home'],['discover','✦','Discover'],['plan','♥','Group'],['itinerary','☷','Itinerary'],['budget','USD','Budget']].map(x=>`<button class="tab ${tab===x[0]?'active':''}" onclick="tab='${x[0]}';render()"><span>${x[1]}</span>${x[2]}</button>`).join('')}</div></nav>`;
   };
   function interestChips(){
     return interests.map(x=>`<button type="button" class="chip ${s.profile.interests.includes(x)?'selected':''}" onclick="toggleInterest('${x}')">${s.profile.interests.includes(x)?'✓ ':''}${x}</button>`).join('');
