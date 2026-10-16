@@ -29,13 +29,15 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p public-site
-          cp index.html terms.html manifest.json sw.js *.css *.js public-site/
+          cp index.html recover.html terms.html manifest.json sw.js *.css *.js public-site/
           cp -R themes public-site/
           cp -R icons public-site/
           test -s public-site/index.html
           test -s public-site/themes/japan.svg
           test -s public-site/themes/australia.svg
           test -s public-site/terms.html
+          test -s public-site/recover.html
+          test -s public-site/recover.js
           test -s public-site/roavely-bundle.js
           test -s public-site/cloud-core.js
           test -s public-site/cloud-actions.js
