@@ -1,5 +1,5 @@
 (function buildCloudCore(){
-  const URL='https://nnpydavlkfzbpwetyclf.supabase.co';
+  const SUPABASE_URL='https://nnpydavlkfzbpwetyclf.supabase.co';
   const KEY='sb_publishable_KhQWXpXZkGpifkSYiFspaQ_Ja6V1Nec';
   const BASE=location.origin+location.pathname;
   const BACKUP='roavely-local-snapshot-v1';
@@ -257,7 +257,7 @@
     readInvite();
     try{
       const sdk=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0/+esm');
-      cloud.client=sdk.createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+      cloud.client=sdk.createClient(SUPABASE_URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
       const {data,error}=await cloud.client.auth.getSession();
       if(error)throw error;
       await onSession(data.session);
