@@ -1,4 +1,4 @@
-/* Roavely combined application — generated from ordered source modules. */
+/* Roavely unified application; generated from ordered modules. */
 
 /* BEGIN app.js */
 const KEY='roavely-demo-v3';
@@ -7,7 +7,7 @@ let s=(()=>{try{return JSON.parse(localStorage.getItem(KEY))||structuredClone(se
 const $=q=>document.querySelector(q), save=()=>localStorage.setItem(KEY,JSON.stringify(s)), trip=()=>s.trips.find(x=>x.id===s.current)||s.trips[0], esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
 function days(){let d=new Date(trip().start+'T12:00:00');return Math.max(0,Math.ceil((d-Date.now())/86400000))}function toast(t){let e=document.createElement('div');e.className='toast';e.textContent=t;document.body.append(e);setTimeout(()=>e.remove(),1800)}
 function persist(){save();render()}function voteCounts(v={}){return Object.values(v).reduce((a,x)=>(a[x]=(a[x]||0)+1,a),{})}
-function top(){return `<div class="top"><div class="brand"><div><h1>Roavely</h1><small>Plan together. Go anywhere.</small></div><select class="trip-select" onchange="switchTrip(this.value)">${s.trips.map(t=>`<option value="${t.id}" ${t.id===s.current?'selected':''}>${t.emoji} ${esc(t.name)}</option>`).join('')}</select></div></div>`}
+function roavelyHeader(){return `<div class="top"><div class="brand"><div><h1>Roavely</h1><small>Plan together. Go anywhere.</small></div><select class="trip-select" onchange="switchTrip(this.value)">${s.trips.map(t=>`<option value="${t.id}" ${t.id===s.current?'selected':''}>${t.emoji} ${esc(t.name)}</option>`).join('')}</select></div></div>`}
 function hero(){let t=trip(),done=(s.check[t.id]||[]).filter(x=>x[1]).length,total=(s.check[t.id]||[]).length;return `<section class="hero"><div class="eyebrow">${t.emoji} ${esc(t.destination)} · ${days()} days to go</div><h2>${esc(t.name)}</h2><p>${t.route.map(esc).join(' → ')}</p><div class="stats"><div class="stat"><b>${(s.people[t.id]||[]).length}</b><span>travelers</span></div><div class="stat"><b>${(s.ideas[t.id]||[]).length}</b><span>saved ideas</span></div><div class="stat"><b>${total?Math.round(done/total*100):0}%</b><span>ready</span></div></div></section>`}
 function home(){let t=trip(),open=(s.check[t.id]||[]).filter(x=>!x[1]).length,dec=(s.decisions[t.id]||[]).length;return `${hero()}<main class="content"><div class="section-title"><h3>Needs attention</h3><button onclick="openModal('trip')">+ Trip</button></div><div class="card"><div class="row"><div><b>${dec} group decisions</b><div class="sub">Vote before someone says “I’m good with anything.”</div></div><button class="btn secondary" onclick="tab='plan';planMode='decisions';render()">Vote</button></div></div><div class="card"><div class="row"><div><b>${open} checklist items left</b><div class="sub">Booking, documents and pre-trip jobs.</div></div><button class="btn secondary" onclick="openModal('checklist')">Open</button></div></div><div class="section-title"><h3>Trip tools</h3></div><div class="quick"><div class="card" onclick="openModal('reservations')">🎟️<b>Reservations</b><div class="sub">Flights, hotels & tickets</div></div><div class="card" onclick="openModal('group')">👥<b>Trips & people</b><div class="sub">Invite code ${t.invite}</div></div><div class="card" onclick="tab='wallet';render()">💸<b>Shared wallet</b><div class="sub">Track who owes what</div></div><div class="card" onclick="tab='map';render()">📍<b>Saved map</b><div class="sub">See ideas by area</div></div></div></main>`}
 function ideas(){let arr=s.ideas[s.current]||[];return `${arr.length?arr.map(i=>{let c=voteCounts(i.v),mine=i.v.Andy;return `<div class="card"><div class="row"><div><div class="idea-title">${i.emoji} ${esc(i.title)}</div><div class="sub">${esc(i.city)} · ${i.cost?'~$'+i.cost:'Free'}</div></div><span class="pill">${(c.love||0)+(c.yes||0)} want it</span></div><div class="vote-row">${[['love','❤️'],['yes','👍'],['maybe','🤷'],['no','👎']].map(([v,e])=>`<button class="vote ${mine===v?'active':''}" onclick="ideaVote('${i.id}','${v}')">${e} ${c[v]||0}</button>`).join('')}</div></div>`}).join(''):'<div class="empty">No ideas yet.</div>'}<button class="btn blue" onclick="openModal('idea')">+ Add an idea</button>`}
@@ -26,7 +26,7 @@ function addIdea(e){e.preventDefault();let f=new FormData(e.target);(s.ideas[s.c
 function addDecision(e){e.preventDefault();let f=new FormData(e.target),opts=[f.get('o1'),f.get('o2'),f.get('o3')].filter(Boolean);(s.decisions[s.current]??=[]).unshift({id:'d'+Date.now(),title:f.get('title'),options:opts,votes:{}});modal=null;persist();toast('Decision created')}
 function addTrip(e){e.preventDefault();let f=new FormData(e.target),id='t'+Date.now(),dest=f.get('dest');s.trips.push({id,emoji:f.get('emoji')||'✈️',name:f.get('name'),destination:dest,start:f.get('start'),end:f.get('end'),budget:+f.get('budget')||0,route:[dest],invite:'RV-'+Math.random().toString(36).slice(2,6).toUpperCase()});s.people[id]=[s.profile?.name||'Andy'];s.ideas[id]=[];s.decisions[id]=[];s.check[id]=[];s.expenses[id]=[];s.itinerary[id]=[];s.reservations[id]=[];s.current=id;modal=null;persist();toast('Trip created')}
 function checkItem(i){s.check[s.current][i][1]=!s.check[s.current][i][1];persist()}function copyInvite(){navigator.clipboard?.writeText(trip().invite);toast('Invite code copied')}function resetDemo(){if(confirm('Reset all local Roavely demo data?')){localStorage.removeItem(KEY);s=structuredClone(seed);s.profile={name:'Andy',airport:'JFK',interests:['Food','Culture','Photography','Adventure','History'],pace:'Balanced',style:'Mid-range'};modal=null;render()}}
-function render(){let body=tab==='home'?home():tab==='plan'?plan():tab==='map'?map():tab==='wallet'?wallet():tripMode();$('#app').innerHTML=`<div class="shell">${top()}${body}${nav()}${modalHTML()}</div>`}(function installRoavelyFeatures(){
+function render(){let body=tab==='home'?home():tab==='plan'?plan():tab==='map'?map():tab==='wallet'?wallet():tripMode();$('#app').innerHTML=`<div class="shell">${roavelyHeader()}${body}${nav()}${modalHTML()}</div>`}(function installRoavelyFeatures(){
   if (!s.profile) s.profile = {name:'Andy', airport:'JFK', interests:['Food','Culture','Photography','Adventure','History'], pace:'Balanced', style:'Mid-range'};
   if (!Array.isArray(s.profile.interests)) s.profile.interests=[];
   const interests=['Food','Culture','Photography','Adventure','Nature','History','Art','Nightlife','Beaches','Hiking','Shopping','Wildlife','Relaxation','Architecture','Road trips','Theme parks'];
@@ -65,7 +65,7 @@ function render(){let body=tab==='home'?home():tab==='plan'?plan():tab==='map'?m
   const sortMatch=a=>a.slice().sort((a,b)=>matchScore(b)-matchScore(a)||a.title.localeCompare(b.title));
   const oldModal=modalHTML;
 
-  top=function(){
+  roavelyHeader=function(){
     return `<div class="top"><div class="brand"><div><h1>Roavely<span class="brand-star">✦</span></h1><small>Plan together. Go anywhere.</small></div><button class="avatar" aria-label="Edit your travel profile" onclick="tab='profile';render()">${esc(person().slice(0,1).toUpperCase())}</button></div><div class="top-trip"><select class="trip-select" aria-label="Current trip" onchange="switchTrip(this.value)">${s.trips.map(t=>`<option value="${esc(t.id)}" ${t.id===s.current?'selected':''}>${t.emoji} ${esc(t.name)}</option>`).join('')}</select><span class="demo-label">LOCAL PREVIEW</span></div></div>`;
   };
   nav=function(){
@@ -219,7 +219,7 @@ function render(){let body=tab==='home'?home():tab==='plan'?plan():tab==='map'?m
   };
   render=function(){
     let body=tab==='home'?home():tab==='discover'?discover():tab==='plan'?plan():tab==='itinerary'?itineraryScreen():tab==='budget'?budgetPage():tab==='profile'?profilePage():tab==='map'?map():tab==='wallet'?wallet():tripMode();
-    $('#app').innerHTML=`<div class="shell">${top()}${body}${nav()}${modalHTML()}</div>`;
+    $('#app').innerHTML=`<div class="shell">${roavelyHeader()}${body}${nav()}${modalHTML()}</div>`;
   };
 })();
 render();
@@ -266,7 +266,7 @@ render();
   const app=window.roavelyNext;
   app.init=init;
   app.money=v=>'$'+Math.round(Number(v)||0).toLocaleString('en-US');
-  app.renderPage=html=>$('#app').innerHTML=`<div class="shell">${top()}${html}${nav()}${modalHTML()}</div>`;
+  app.renderPage=html=>$('#app').innerHTML=`<div class="shell">${roavelyHeader()}${html}${nav()}${modalHTML()}</div>`;
   app.demoLabel=()=>`<span class="preview-note">LOCAL PREVIEW · OTHER TRAVELERS ARE DEMO DATA</span>`;
   app.candidates=candidates;
   app.score=d=>{
@@ -976,8 +976,8 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
     cloud.error=isErr?msg:'';
     const n=document.getElementById('cloud-feedback');if(n){n.textContent=msg;n.className=isErr?'cloud-error':'cloud-success'}
   };
-  const oldTop=top;
-  top=function(){
+  const oldTop=roavelyHeader;
+  roavelyHeader=function(){
     const label=cloud.loading?'Connecting…':cloud.user?(active()?'☁ Live trip':'☁ Choose trip'):'☁ Sign in';
     return oldTop()+`<div class="cloud-toolbar"><span class="cloud-state">${escapeHtml(active()?'Shared online trip':'Local preview · not synced')}</span><div class="cloud-controls"><button type="button" onclick="cloudOpen()">${escapeHtml(label)}</button>${active()?'<button type="button" onclick="cloudRefresh()">⟳</button>':''}</div></div>`;
   };
