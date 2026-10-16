@@ -110,7 +110,7 @@
       if(!response.data.session){cloud.busy=false;cloud.message='Registration received. Confirm the email in your Inbox or Updates, then sign in; a separate administrator approval is required.';cloud.signup=false;renderPanel();return}
       await onSession(response.data.session);
       cloud.message='Signed in';renderPanel();
-    }catch(error){fail(error)}finally{cloud.busy=false;renderPanel()}
+    }catch(error){if(!cloud.signup&&String(error?.message||'').toLowerCase().includes('invalid login credentials')){cloud.recoveryEmail=email;cloud.error='The password was not accepted. Use Forgot password? to reset it.';renderPanel()}else fail(error)}finally{cloud.busy=false;renderPanel()}
   }
   window.cloudLogin=signAction;
   window.cloudRefresh=async()=>{if(!cloud.user)return;await onSession({user:cloud.user});cloud.message='Status refreshed';renderPanel()};
@@ -372,6 +372,8 @@
   };
   async function boot(){
     readInvite();
+    try{const hash=new URLSearchParams(location.hash.replace(/^#/,''));if(hash.get('type')==='recovery'){cloud.recovering=true;cloud.recoveryStep='new';cloud.drawer=true}}
+    catch{}
     try{
       const sdk=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0/+esm');
       cloud.client=sdk.createClient(SUPABASE_URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
@@ -380,7 +382,8 @@
       await onSession(data.session);
       cloud.client.auth.onAuthStateChange((event,session)=>{
         if(event==='INITIAL_SESSION')return;
-        setTimeout(()=>void onSession(session),0);
+        if(event==='PASSWORD_RECOVERY'){cloud.recovering=true;cloud.recoveryStep='new';cloud.drawer=true}
+        setTimeout(()=>{void onSession(session);renderPanel()},0);
       });
     }catch(error){cloud.loading=false;cloud.error='Cloud sign-in unavailable: '+(error.message||error);render();renderPanel()}
   }
