@@ -1,0 +1,26 @@
+
+/* Roavely — Adventure Board, finances, documents, personal travel */
+.board-summary,.passport-hero{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px;border-radius:20px;background:linear-gradient(125deg,#162944,#37528b);color:white;margin:12px 0 18px}
+.passport-hero{grid-template-columns:repeat(2,1fr)}
+.board-summary>div,.passport-hero>div{background:rgba(255,255,255,.1);border-radius:13px;padding:15px 10px;text-align:center}
+.board-summary b,.passport-hero b{font-size:28px;display:block}.board-summary span,.passport-hero span{font-size:11px;color:#d4def4}
+.board-item .board-progress{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:13px 0 10px}
+.board-progress span{height:8px;border-radius:10px;background:#edf0f5}
+.board-progress span.complete{background:#5575d9}
+.board-facts{font-size:12px;color:#69768c}.board-actions{margin-top:12px}
+.board-actions .btn{flex:1}.board-actions .btn:disabled{background:#dde3ec;color:#8e98a9;cursor:not-allowed}
+.stage-label{font-size:10px;background:#eaf1ff;color:#365ab6;padding:7px 9px;border-radius:99px;font-weight:800;white-space:nowrap}
+.board-promo{margin-top:16px}.board-promo .btn{flex:none}
+.settlement-line{padding:12px 0;border-bottom:1px solid #ebeff5;font-size:14px;font-weight:800}.settlement-line:last-child{border:0}
+.share-line{padding:9px 0;border-top:1px solid #edf0f5;font-size:13px}.share-line .btn{font-size:11px;padding:7px 10px}
+a.text-button{display:inline-block;text-decoration:none;color:#365bd9}
+.packing-row{padding:10px 0;border-bottom:1px solid #edf0f5;align-items:center}
+.packing-row:last-child{border-bottom:none}.packing-row label{display:flex;align-items:center;gap:10px;flex:1;font-size:14px}
+.packing-row label input{width:19px;height:19px;accent-color:#315bff}
+.packing-row .packed{text-decoration:line-through;color:#a4aabb}
+.passport-stamp{border-left:5px solid #5e8fc7}
+.memory-card{display:flex;flex-direction:column;gap:7px;min-width:0;overflow:hidden}
+.memory-card img,.memory-card video{display:block;width:100%;max-height:360px;aspect-ratio:4/3;object-fit:cover;border-radius:13px;background:#e5eaf1}
+.memory-card video{object-fit:contain}.memory-card b{font-size:14px}
+.memory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(max-width:430px){.memory-grid{grid-template-columns:1fr}.board-summary b{font-size:23px}.board-summary>div{padding:12px 6px}.share-line .btn{font-size:10px}}
