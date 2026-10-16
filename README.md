@@ -1,3 +1,20 @@
+## Supabase project provisioned (October 16, 2026)
+
+- **Supabase project:** [Roavely](https://supabase.com/dashboard/project/nnpydavlkfzbpwetyclf)
+- **Project ID:** `nnpydavlkfzbpwetyclf`
+- **Organization:** AndyAkin (`doclysfbqnorjlxiemlu`)
+- **Region:** `us-east-1`
+- **Cost quoted during creation:** $0/month (this was the project creation quote; usage may have other plan limits/fees).
+- **Separate from DeckVault:** `lretqhaattgtwpfwsxbc`. No DeckVault tables or settings were modified.
+
+**Provisioned backend:** 11 public tables with row-level security: profiles, trips, trip_members, suggestions, suggestion_votes, suggestion_comments, trip_chat, date_options, date_votes, itinerary_days, itinerary_activities. The owner-membership trigger, cross-trip composite FKs, basic indexes and policies are deployed. Supabase security advisors reported no findings on the initial scan. Trip data is empty.
+
+**Not yet integrated into browser app:** The HTML/JS demo currently uses localStorage and IndexedDB. The public GitHub Pages app does **not** automatically sign users in or sync to Supabase. No live invites have been issued; direct enrollment of other members was disabled pending a secure opt-in invitation workflow. Do not run the old `backend/schema-draft.sql` on this live project: it is an unreviewed alternative, not the deployed schema.
+
+**Next integration gates:** Set the Supabase Auth Site URL and redirect allowlist to `https://andyakin95.github.io/Roavely/`; implement email sign-in and session handling with the publishable key (never a secret/service key), authenticated trip creation/invite acceptance, first-login profile creation, per-trip realtime data sync and privacy testing across independent user accounts. No demo votes should be uploaded as real friend responses.
+
+---
+
 # Phase 4 — Adventure planning toolkit (October 15, 2026)
 
 The mobile PWA has these additional **working local-preview screens**:
