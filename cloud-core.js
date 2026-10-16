@@ -5,10 +5,10 @@
   const BACKUP='roavely-local-snapshot-v1';
   const isUuid=x=>/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(x||'');
   const escapeHtml=x=>String(x??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  const clientInfo={client:null,user:null,profile:null,online:false,loading:true,trips:[],activeId:null,drawer:false,signup:false,message:'',error:'',pendingInvite:null,channel:null,busy:false,booted:false};
+  const clientInfo={client:null,user:null,profile:null,online:false,loading:true,trips:[],activeId:null,drawer:false,signup:false,message:'',error:'',pendingInvite:null,channel:null,busy:false,booted:false,access:null,queue:[],signupEmail:''};
   window.roavelyCloud=clientInfo;
   const cloud=clientInfo;
-  const active=()=>!!cloud.user&&isUuid(s.current)&&cloud.trips.some(t=>t.id===s.current);
+  const active=()=>!!cloud.user&&cloud.access?.status==='approved'&&isUuid(s.current)&&cloud.trips.some(t=>t.id===s.current);
   cloud.isActive=active;
   cloud.current=()=>active()?s.current:null;
   cloud.alert=(msg,isErr=false)=>{
@@ -18,8 +18,8 @@
   };
   const oldTop=roavelyHeader;
   roavelyHeader=function(){
-    const label=cloud.loading?'Connecting…':cloud.user?(active()?'☁ Live trip':'☁ Choose trip'):'☁ Sign in';
-    return oldTop()+`<div class="cloud-toolbar"><span class="cloud-state">${escapeHtml(active()?'Shared online trip':'Local preview · not synced')}</span><div class="cloud-controls"><button type="button" onclick="cloudOpen()">${escapeHtml(label)}</button>${active()?'<button type="button" onclick="cloudRefresh()">⟳</button>':''}</div></div>`;
+    const label=cloud.loading?'Connecting…':cloud.user?(cloud.access?.status!=='approved'?'⏳ Pending approval':active()?'☁ Live trip':'☁ Choose trip'):'☁ Sign in';
+    return oldTop()+`<div class="cloud-toolbar"><span class="cloud-state">${escapeHtml(active()?'Shared online trip':cloud.user&&cloud.access?.status!=='approved'?'Account awaiting approval':'Local preview · not synced')}</span><div class="cloud-controls"><button type="button" onclick="cloudOpen()">${escapeHtml(label)}</button>${active()?'<button type="button" onclick="cloudRefresh()">⟳</button>':''}</div></div>`;
   };
   window.cloudOpen=()=>{cloud.drawer=true;renderPanel()};
   window.cloudClose=()=>{cloud.drawer=false;document.getElementById('cloud-panel')?.remove()};
@@ -32,8 +32,9 @@
       <form onsubmit="cloudLogin(event)">
        ${fieldLabel('Email','<input type="email" name="email" autocomplete="email" required>')}
        ${fieldLabel('Password','<input type="password" name="password" autocomplete="'+(cloud.signup?'new-password':'current-password')+'" minlength="8" required>')}
+       ${cloud.signup?'<label class="cloud-terms"><input type="checkbox" name="accept_terms" value="on" required><span>I agree to the <a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a> (2026-10).</span></label>':''}
        <button class="btn blue full-width" ${cloud.busy?'disabled':''}>${cloud.signup?'Create account':'Log in'}</button>
-      </form><p class="cloud-muted">New accounts may need email confirmation. The link must return to this Roavely site. If it doesn’t, the Supabase Auth redirect URL needs configuring.</p>`;
+      </form><p class="cloud-muted">Registration requires email verification and administrator approval. Check your Gmail Inbox, Updates and Spam for the confirmation email.</p><form onsubmit="cloudResendSignup(event)">${fieldLabel('Resend the verification email','<input type="email" name="resend_email" required value="'+escapeHtml(cloud.signupEmail)+'" placeholder="Registered email">')}<button class="btn secondary full-width">Resend confirmation email</button></form>`;
     const list=cloud.trips;
     return `<div class="cloud-account"><b>${escapeHtml(cloud.profile?.display_name||cloud.user.email||'Traveler')}</b><small>${escapeHtml(cloud.user.email)}</small></div>
     ${fieldLabel('Display name',`<form class="cloud-inline" onsubmit="cloudRename(event)"><input name="name" maxlength="80" required value="${escapeHtml(cloud.profile?.display_name||'Traveler')}"><button class="btn secondary">Save</button></form>`)}
@@ -62,17 +63,19 @@
     e.preventDefault();if(!cloud.client)return fail(Error('The cloud connection is not ready'));
     const f=new FormData(e.target),email=String(f.get('email')||'').trim(),password=String(f.get('password')||'');
     if(password.length<8)return fail(Error('Use a password with at least 8 characters'));
+    if(cloud.signup&&f.get('accept_terms')!=='on')return fail(Error('You must accept the Terms & Conditions'));
+    if(cloud.signup)cloud.signupEmail=email;
     cloud.busy=true;renderPanel();
     try{
-      const response=cloud.signup?await cloud.client.auth.signUp({email,password,options:{emailRedirectTo:BASE}}):await cloud.client.auth.signInWithPassword({email,password});
+      const response=cloud.signup?await cloud.client.auth.signUp({email,password,options:{emailRedirectTo:BASE,data:{accepted_terms_version:'2026-10'}}}):await cloud.client.auth.signInWithPassword({email,password});
       if(response.error)throw response.error;
-      if(!response.data.session){cloud.busy=false;cloud.message='Account created. Check your email to confirm, then return and log in.';renderPanel();return}
+      if(!response.data.session){cloud.busy=false;cloud.message='Registration received. Confirm the email in your Inbox or Updates, then sign in; a separate administrator approval is required.';cloud.signup=false;renderPanel();return}
       await onSession(response.data.session);
       cloud.message='Signed in';renderPanel();
     }catch(error){fail(error)}finally{cloud.busy=false;renderPanel()}
   }
   window.cloudLogin=signAction;
-  window.cloudRefresh=async()=>{if(!cloud.user)return;await loadTrips();render();cloud.message='Updated';renderPanel()};
+  window.cloudRefresh=async()=>{if(!cloud.user)return;await onSession({user:cloud.user});cloud.message='Status refreshed';renderPanel()};
   function demoBackup(){
     try{if(!localStorage.getItem(BACKUP)){localStorage.setItem(BACKUP,JSON.stringify(s))}}catch{}
   }
@@ -81,7 +84,7 @@
     s=structuredClone(seed);s.profile={name:'Traveler',airport:'',interests:[],pace:'Balanced',style:'Mid-range'};save();
   }
   async function onSession(session){
-    if(!session){if(cloud.user){cloud.user=null;cloud.profile=null;cloud.trips=[];cloud.activeId=null;await unsubscribe();restoreDemo();render()}cloud.loading=false;renderPanel();render();return}
+    if(!session){if(cloud.user){cloud.user=null;cloud.profile=null;cloud.access=null;cloud.queue=[];cloud.trips=[];cloud.activeId=null;await unsubscribe();restoreDemo();render()}cloud.loading=false;renderPanel();render();return}
     cloud.user=session.user;
     demoBackup();
     try{
@@ -92,7 +95,11 @@
         const {data:newProfile,error:pErr}=await cloud.client.from('profiles').insert({id:cloud.user.id,display_name:display}).select().single();
         if(pErr)throw pErr;cloud.profile=newProfile;
       }else cloud.profile=existing;
-      await loadTrips();
+      const state=await cloud.client.from('account_access').select('*').eq('user_id',cloud.user.id).maybeSingle();
+      if(state.error)throw state.error;
+      cloud.access=state.data;
+      if(cloud.access?.status==='approved'){await loadTrips();if(cloud.access.role==='admin')await loadAdminQueue();}
+      else{cloud.trips=[];cloud.activeId=null;cloud.drawer=true;cloud.message='Your account is awaiting administrator approval.';}
       cloud.online=true;
       cloud.error='';
     }catch(error){cloud.error=error.message||String(error)}
@@ -124,7 +131,7 @@
   }
   const check=(result,name)=>{if(result.error)throw new Error(name+': '+result.error.message);return result.data||[]};
   async function loadTrips(selected){
-    if(!cloud.user)return;
+    if(!cloud.user||cloud.access?.status!=='approved')return;
     const list=check(await cloud.client.from('trips').select('id,owner_id,title,destination,starts_on,ends_on,budget_per_person').order('created_at',{ascending:false}),'Trips');
     cloud.trips=list;
     if(!list.length){cloud.activeId=null;return}
