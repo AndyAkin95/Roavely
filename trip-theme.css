@@ -1,0 +1,29 @@
+/* Destination-reactive scenes, with subtle gradients across every app screen. */
+:root{--trip-accent:#315bff;--trip-tint:#f4f6fb}
+:root[data-roavely-theme="japan"]{--trip-accent:#b94b83;--trip-tint:#fff4f9;--blue:#bc4b87;--bg:#fff6fa}
+:root[data-roavely-theme="iceland"]{--trip-accent:#158c8a;--trip-tint:#edf9f7;--blue:#228d90;--bg:#f1fbfa}
+:root[data-roavely-theme="australia"]{--trip-accent:#df6555;--trip-tint:#fff4ee;--blue:#d35a51;--bg:#fff8f3}
+:root[data-roavely-theme="italy"]{--trip-accent:#bd655f;--trip-tint:#fff8f0;--blue:#af615c;--bg:#fffaf5}
+html[data-roavely-theme] body{background:var(--bg,#f4f6fb);transition:background-color .35s ease}
+[data-roavely-theme] .shell{background:linear-gradient(180deg,var(--trip-tint) 0%,rgba(255,255,255,0) 52%);transition:background-color .35s}
+[data-roavely-theme] .hero{position:relative;overflow:hidden;min-height:224px;background-color:#30446e;background-size:cover;background-position:center;isolation:isolate;padding:22px 20px 42px}
+[data-roavely-theme] .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,17,38,.82),rgba(10,19,38,.57) 48%,rgba(21,25,46,.1));pointer-events:none}
+[data-roavely-theme="japan"] .hero{background-image:url("./themes/japan.svg")}
+[data-roavely-theme="iceland"] .hero{background-image:url("./themes/iceland.svg")}
+[data-roavely-theme="australia"] .hero{background-image:url("./themes/australia.svg")}
+[data-roavely-theme="italy"] .hero{background-image:url("./themes/italy.svg")}
+[data-roavely-theme="default"] .hero{background-image:linear-gradient(130deg,#172944,#456895)}
+[data-roavely-theme] .hero h2{font-weight:900;text-shadow:0 2px 12px #15233a55}
+[data-roavely-theme] .hero .stats{position:relative}
+[data-roavely-theme] .hero .stat{background:rgba(12,27,47,.37);backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.2)}
+[data-roavely-theme] .hero .stat span{color:#f9f8ff;opacity:1}
+.trip-theme-label{position:absolute;right:14px;bottom:12px;background:#fff2;backdrop-filter:blur(7px);border-radius:99px;border:1px solid #ffffff60;padding:6px 9px;font-size:10px;letter-spacing:.25px;font-weight:800;color:white}
+[data-roavely-theme] .top .trip-select{border-color:color-mix(in srgb,var(--trip-accent) 35%,#e6eaf3)}
+[data-roavely-theme] .tab.active{color:var(--trip-accent)!important}
+[data-roavely-theme="japan"] .cloud-toolbar{background:linear-gradient(120deg,#fff1f7,#fbe5f1)}
+[data-roavely-theme="australia"] .cloud-toolbar{background:linear-gradient(120deg,#fff3e9,#ffe9df)}
+[data-roavely-theme="iceland"] .cloud-toolbar{background:linear-gradient(120deg,#f1fbf9,#dff6f3)}
+[data-roavely-theme="italy"] .cloud-toolbar{background:linear-gradient(120deg,#fff8f0,#fae5d8)}
+[data-roavely-theme="japan"] .top:before{content:"🌸";float:right;opacity:.53;filter:grayscale(.1);transform:translateY(-2px);pointer-events:none}
+@media(prefers-reduced-motion:reduce){html[data-roavely-theme] body,[data-roavely-theme] .shell{transition:none}}
+@media(max-width:410px){[data-roavely-theme] .hero{min-height:205px}.trip-theme-label{font-size:9px;bottom:8px}}
