@@ -1,3 +1,17 @@
+## Membership approvals, registration and trip themes (October 2026)
+
+- New Supabase Auth users are stored in `account_access` with `status='pending'`, `role='member'`. RLS trip functions now require a confirmed email, accepted Terms version `2026-10`, and `status='approved'`. Even valid invite tokens cannot bypass approval.
+- The signup screen requires agreement to [Terms & Conditions](./terms.html). Terms are recorded at sign-up and can be accepted again by already-registered members through an authenticated RPC.
+- Sign-in panels show pending / rejected / suspended states, a Terms consent prompt if missing, and the ability to check approval status. A confirmation-email resend is available.
+- Only an approved administrator can view the authenticated application queue and approve, decline or suspend a member; member self-approval is impossible through the client.
+- **No administrator has been assigned automatically.** To bootstrap the first admin, the owner must first verify the correct real account has a confirmed email and accepted terms, then grant `role='admin'` and `status='approved'` using trusted Supabase dashboard administrative access (never from a client or a publicly accessible RPC). Do not assign the role based solely on an unconfirmed registration or an email typed into chat.
+- Account email delivery uses Supabase's built-in service until a production SMTP provider is configured. Built-in SMTP is restricted and unsuitable for public launch. Enable leaked-password protection and configure Site URL/redirects in Supabase Auth dashboard.
+- Trip themes are selected automatically from the current destination: Japan has cherry blossoms, Mount Fuji and a torii gate; Australia, Iceland, Italy and related destinations have matching background scenery. The theme works in the existing PWA without a separate theme download.
+- UI source: `trip-theme.js`, `trip-theme.css`; illustrations: `themes/*.svg`; installable bundle: `roavely-bundle.js`.
+- **QA:** Script syntax and 28 local-render screens, signup Terms, pending approval, and admin queue mock states were checked. Email verification callbacks, actual iOS layout, and multi-user cross-account approval require live testing.
+
+---
+
 ## Supabase project provisioned (October 16, 2026)
 
 - **Supabase project:** [Roavely](https://supabase.com/dashboard/project/nnpydavlkfzbpwetyclf)
