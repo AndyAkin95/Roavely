@@ -352,6 +352,24 @@
     }catch(error){cloud.error=String(error?.message||error)}
     finally{cloud.busy=false;renderPanel()}
   };
+  window.cloudUpdatePassword=async e=>{
+    e.preventDefault();
+    if(!cloud.user)return fail(Error('Open the reset link in your email first'));
+    const f=new FormData(e.target);
+    const next=String(f.get('password')||'');
+    if(next.length<12)return fail(Error('Use 12 or more characters'));
+    if(next!==String(f.get('confirm_password')||''))return fail(Error('Passwords do not match'));
+    cloud.busy=true;renderPanel();
+    try{
+      const result=await cloud.client.auth.updateUser({password:next});
+      if(result.error)throw result.error;
+      cloud.recovering=false;cloud.recoveryStep='request';
+      await onSession({user:cloud.user});
+      cloud.message='Password updated. Your account and administrator access are unchanged.';
+      try{history.replaceState({},'',BASE)}catch{}
+    }catch(error){cloud.error=String(error?.message||error)}
+    finally{cloud.busy=false;renderPanel()}
+  };
   async function boot(){
     readInvite();
     try{
