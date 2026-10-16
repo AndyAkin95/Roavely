@@ -16,19 +16,35 @@ concurrency:
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Configure Pages
+
+      - name: Prepare static Roavely application
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p public-site
+          cp index.html manifest.json sw.js *.css *.js public-site/
+          cp -R icons public-site/
+          test -s public-site/index.html
+          test -s public-site/cloud-core.js
+          test -s public-site/cloud-actions.js
+          test -s public-site/icons/apple-touch-icon.png
+          echo "Roavely static PWA files prepared."
+
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Upload static application
+
+      - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
-      - name: Deploy
+          path: ./public-site
+
+      - name: Deploy website
         id: deployment
         uses: actions/deploy-pages@v4
