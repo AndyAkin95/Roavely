@@ -1,5 +1,5 @@
-const CACHE='roavely-v4-20261015';
-const ASSETS=['./','./index.html','./styles.css','./app.js','./manifest.json','./icons/apple-touch-icon.png','./icons/favicon.png'];
+const CACHE='roavely-v5-collaboration-20261015';
+const ASSETS=['./','./index.html','./styles.css','./phase3.css','./app.js','./phase3-discover.js','./phase3-crew.js','./phase3-planner.js','./manifest.json','./icons/apple-touch-icon.png','./icons/favicon.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))),self.clients.claim()]))});
 self.addEventListener('fetch',e=>{
