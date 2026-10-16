@@ -1,3 +1,28 @@
+# Phase 4 — Adventure planning toolkit (October 15, 2026)
+
+The mobile PWA has these additional **working local-preview screens**:
+
+- **Adventure Board:** every idea can progress through Suggested → Voting → Approved → Booked → Done. Set minimum positive-vote threshold, deadline, responsible traveler and notes; approved ideas can be scheduled.
+- **Advanced expenses:** equal or custom per-person split, who-paid tracking, mark shares settled, and simplified repayment recommendations. This is a distinct actual-payments ledger, *not* automatically added to trip estimates.
+- **Booking vault:** non-sensitive booking names, dates, status, links and references; local-only and unencrypted in the prototype. **Do not enter sensitive IDs, payment card data, passports or passwords.**
+- **Travel transport tracker:** manually entered flight/train routes, dates and terminals; **not** connected to real-time departures.
+- **Manual price watch:** record flights/hotels price snapshots and target thresholds; no background price search or automatic notifications.
+- **Bucket list:** personal dreams that can be converted into trip suggestions.
+- **Travel passport:** personal record of places actually visited.
+- **Packing checklist:** generated from the user's interest profile and editable with checkboxes and custom items; not a live-weather or entry-requirements service.
+- **Temporary check-ins:** manually entered meeting-point notes expire after two hours. Not visible to friends until shared sync exists; no GPS is collected by this screen.
+- **Nearby:** prompts for browser geolocation only after a tap and opens an external maps search. Does not store coordinates.
+- **Trip memories:** photo/video uploads stored in that browser's IndexedDB, not in localStorage or a remote cloud; keep original photos backed up.
+- **Trip recap/export:** summary of trip planning, a route to the media album, and local JSON export of trip-planning data. Media are not part of the JSON export; no automatic video editing yet.
+
+**Important: prototype limitations have not changed.** Friends cannot use separate live-synced accounts. Demo friend votes and preferences must not be represented as real votes. No real-time flight/hotel quotes, precise in-app routing, push/email notification service, synced photo storage, confirmed booking availability, or purchase flow is active. A browser reload can preserve local data, but clearing browser data can delete it.
+
+Source modules: `phase4-board.js`, `phase4-finance.js`, `phase4-personal.js`, `phase4-packing.js`, `phase4-location.js`, `phase4-memories.js` and `phase4.css`. The existing `app.js` and `phase3-*.js` remain loaded.
+
+**Separate live backend still pending:** `backend/schema-draft.sql` is an unexecuted, non-production-reviewed Supabase draft. The owner must select the Supabase organization for the new Roavely project, independent of DeckVault; security review, RLS consistency fixes and cross-account tests are required before launch.
+
+---
+
 # Phase 3 — Collaborative planning preview (October 2026)
 
 The current app now includes a **group destination compatibility engine** (interests + estimated budget fit), **swipe-based destination votes**, **Wildcard** adventures, **local group chat**, **availability date voting**, **city-grouped smart itinerary shortcuts**, **personal monthly savings tracking**, **date-aware Trip Mode**, **OpenStreetMap searches**, and an **in-app activity feed**.
