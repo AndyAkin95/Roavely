@@ -1,4 +1,4 @@
-/* Roavely unified application — ordered sources for Safari. */
+/* Roavely browser bundle: ordered entrypoints. */
 
 /* BEGIN app.js */
 const KEY='roavely-demo-v3';
@@ -965,7 +965,7 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
   const BACKUP='roavely-local-snapshot-v1';
   const isUuid=x=>/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(x||'');
   const escapeHtml=x=>String(x??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  const clientInfo={client:null,user:null,profile:null,online:false,loading:true,trips:[],activeId:null,drawer:false,signup:false,message:'',error:'',pendingInvite:null,channel:null,busy:false,booted:false,access:null,queue:[],signupEmail:''};
+  const clientInfo={client:null,user:null,profile:null,online:false,loading:true,trips:[],activeId:null,drawer:false,signup:false,message:'',error:'',pendingInvite:null,channel:null,busy:false,booted:false,access:null,queue:[],signupEmail:'',recovering:false,recoveryStep:'request',recoveryEmail:''};
   window.roavelyCloud=clientInfo;
   const cloud=clientInfo;
   const active=()=>!!cloud.user&&cloud.access?.status==='approved'&&cloud.access?.accepted_terms_version==='2026-10'&&isUuid(s.current)&&cloud.trips.some(t=>t.id===s.current);
@@ -1000,9 +1000,29 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
  ${queue.map(r=>`<div class="cloud-review"><b>${escapeHtml(r.contact_email)}</b><small>${escapeHtml(r.status)} · ${r.email_verified?'Email verified':'Email unverified'} · ${r.accepted_terms_version==='2026-10'?'Terms accepted':'Terms not accepted'}</small>
  <div class="cloud-review-actions"><button class="btn blue" ${!r.email_verified||r.accepted_terms_version!=='2026-10'?'disabled':''} onclick="cloudReviewAccount('${r.user_id}','approved')">Approve</button><button class="btn secondary" onclick="cloudReviewAccount('${r.user_id}','rejected')">Decline</button>${r.status==='approved'?`<button class="btn secondary" onclick="cloudReviewAccount('${r.user_id}','suspended')">Suspend</button>`:''}</div></div>`).join('')||'<p class="cloud-muted">No applications found.</p>'}</div>`;
 }
+  function recoveryPanel(){
+  if(cloud.recoveryStep==='new'&&cloud.user){
+    return `<div class="cloud-account"><b>Choose a new password</b><small>${escapeHtml(cloud.user.email||'Roavely account')}</small></div>
+      <p class="cloud-muted">Your password-reset link signed you in securely. Set a new password below; your trips and administrator role are preserved.</p>
+      <form onsubmit="cloudUpdatePassword(event)">
+        ${fieldLabel('New password','<input name="password" type="password" autocomplete="new-password" minlength="12" required>')}
+        ${fieldLabel('Confirm new password','<input name="confirm_password" type="password" autocomplete="new-password" minlength="12" required>')}
+        <button class="btn blue full-width" ${cloud.busy?'disabled':''}>Save new password</button>
+      </form>`;
+  }
+  return `<div class="cloud-account"><b>Reset your password</b></div>
+    <p class="cloud-muted">Use the email address you registered with. This resets the password on your existing account without affecting its access or administrator role.</p>
+    <form onsubmit="cloudSendReset(event)">
+      ${fieldLabel('Registered email',`<input type="email" name="email" autocomplete="email" required value="${escapeHtml(cloud.recoveryEmail||cloud.signupEmail||'')}">`)}
+      <button class="btn blue full-width" ${cloud.busy?'disabled':''}>Send password-reset email</button>
+    </form>
+    <button class="btn secondary full-width" style="margin-top:12px" onclick="cloudCancelRecovery()">Back to sign in</button>
+    <p class="cloud-muted">If the email sends you to localhost, the administrator must update Supabase's Site URL and Redirect URLs.</p>`;
+}
   function panelBody(){
     if(cloud.loading)return `<div class="cloud-wait">Connecting to the Roavely database…</div>`;
     if(!cloud.client)return `<p class="cloud-error">${escapeHtml(cloud.error||'Cloud services failed to load. Check your connection and reload.')}</p>`;
+    if(cloud.recovering)return recoveryPanel();
     if(!cloud.user)return `<p class="cloud-muted">Create a free Roavely account to save real trips, invite friends and sync plans between phones. The existing demo stays on this device.</p>
       <div class="cloud-segments"><button onclick="cloudSetSignUp(false)" class="${cloud.signup?'':'selected'}">Log in</button><button onclick="cloudSetSignUp(true)" class="${cloud.signup?'selected':''}">Create account</button></div>
       <form onsubmit="cloudLogin(event)">
@@ -1010,7 +1030,7 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
        ${fieldLabel('Password','<input type="password" name="password" autocomplete="'+(cloud.signup?'new-password':'current-password')+'" minlength="8" required>')}
        ${cloud.signup?'<label class="cloud-terms"><input type="checkbox" name="accept_terms" value="on" required><span>I agree to the <a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a> (2026-10).</span></label>':''}
        <button class="btn blue full-width" ${cloud.busy?'disabled':''}>${cloud.signup?'Create account':'Log in'}</button>
-      </form><p class="cloud-muted">Registration requires email verification and administrator approval. Check your Gmail Inbox, Updates and Spam for the confirmation email.</p><form onsubmit="cloudResendSignup(event)">${fieldLabel('Resend the verification email','<input type="email" name="resend_email" required value="'+escapeHtml(cloud.signupEmail)+'" placeholder="Registered email">')}<button class="btn secondary full-width">Resend confirmation email</button></form>`;
+      </form>${!cloud.signup?'<button type="button" class="cloud-forgot" onclick="cloudForgotPassword()">Forgot password?</button>':''}<p class="cloud-muted">Registration requires email verification and administrator approval. Check your Gmail Inbox, Updates and Spam for the confirmation email.</p><form onsubmit="cloudResendSignup(event)">${fieldLabel('Resend the verification email','<input type="email" name="resend_email" required value="'+escapeHtml(cloud.signupEmail)+'" placeholder="Registered email">')}<button class="btn secondary full-width">Resend confirmation email</button></form>`;
     if(cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')return pendingPanelHTML();
     const list=cloud.trips;
     return `<div class="cloud-account"><b>${escapeHtml(cloud.profile?.display_name||cloud.user.email||'Traveler')}</b><small>${escapeHtml(cloud.user.email)}</small></div>
@@ -1050,7 +1070,7 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
       if(!response.data.session){cloud.busy=false;cloud.message='Registration received. Confirm the email in your Inbox or Updates, then sign in; a separate administrator approval is required.';cloud.signup=false;renderPanel();return}
       await onSession(response.data.session);
       cloud.message='Signed in';renderPanel();
-    }catch(error){fail(error)}finally{cloud.busy=false;renderPanel()}
+    }catch(error){if(!cloud.signup&&String(error?.message||'').toLowerCase().includes('invalid login credentials')){cloud.recoveryEmail=email;cloud.error='The password was not accepted. Use Forgot password? to reset it.';renderPanel()}else fail(error)}finally{cloud.busy=false;renderPanel()}
   }
   window.cloudLogin=signAction;
   window.cloudRefresh=async()=>{if(!cloud.user)return;await onSession({user:cloud.user});cloud.message='Status refreshed';renderPanel()};
@@ -1109,7 +1129,7 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
   }
   const check=(result,name)=>{if(result.error)throw new Error(name+': '+result.error.message);return result.data||[]};
   async function loadTrips(selected){
-    if(!cloud.user||cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')return;
+    if(!cloud.user||cloud.access?.status!=='approved'||!cloud.access?.accepted_terms_version==='2026-10')return;
     const list=check(await cloud.client.from('trips').select('id,owner_id,title,destination,starts_on,ends_on,budget_per_person').order('created_at',{ascending:false}),'Trips');
     cloud.trips=list;
     if(!list.length){cloud.activeId=null;return}
@@ -1239,7 +1259,7 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
     try{cloud.pendingInvite=token&&/^[a-f0-9]{64}$/.test(token)?token:sessionStorage.getItem('roavely-invite-token')}catch{}
   }
   async function loadAdminQueue(){
- if(cloud.access?.role!=='admin'||cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')return;
+ if(cloud.access?.role!=='admin'||cloud.access?.status!=='approved'||!cloud.access?.accepted_terms_version==='2026-10')return;
  const {data,error}=await cloud.client.rpc('list_roavely_access');
  if(error)throw error;
  cloud.queue=(data||[]).filter(x=>x.status==='pending'||x.status==='approved');
@@ -1277,8 +1297,43 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
    renderPanel();
  }catch(error){fail(error)}
 };
+  window.cloudForgotPassword=()=>{cloud.recovering=true;cloud.recoveryStep='request';cloud.error='';cloud.drawer=true;renderPanel()};
+  window.cloudCancelRecovery=()=>{cloud.recovering=false;cloud.error='';cloud.message='';renderPanel()};
+  window.cloudSendReset=async e=>{
+    e.preventDefault();
+    const email=String(new FormData(e.target).get('email')||'').trim();
+    if(!cloud.client||!email)return;
+    cloud.busy=true;cloud.recoveryEmail=email;renderPanel();
+    try{
+      const result=await cloud.client.auth.resetPasswordForEmail(email,{redirectTo:BASE});
+      if(result.error)throw result.error;
+      cloud.recovering=false;cloud.signup=false;cloud.error='';
+      cloud.message='If this address has a Roavely account, a reset email was requested. Check your inbox and Updates folder.';
+    }catch(error){cloud.error=String(error?.message||error)}
+    finally{cloud.busy=false;renderPanel()}
+  };
+  window.cloudUpdatePassword=async e=>{
+    e.preventDefault();
+    if(!cloud.user)return fail(Error('Open the reset link in your email first'));
+    const f=new FormData(e.target);
+    const next=String(f.get('password')||'');
+    if(next.length<12)return fail(Error('Use 12 or more characters'));
+    if(next!==String(f.get('confirm_password')||''))return fail(Error('Passwords do not match'));
+    cloud.busy=true;renderPanel();
+    try{
+      const result=await cloud.client.auth.updateUser({password:next});
+      if(result.error)throw result.error;
+      cloud.recovering=false;cloud.recoveryStep='request';
+      await onSession({user:cloud.user});
+      cloud.message='Password updated. Your account and administrator access are unchanged.';
+      try{history.replaceState({},'',BASE)}catch{}
+    }catch(error){cloud.error=String(error?.message||error)}
+    finally{cloud.busy=false;renderPanel()}
+  };
   async function boot(){
     readInvite();
+    try{const hash=new URLSearchParams(location.hash.replace(/^#/,''));if(hash.get('type')==='recovery'){cloud.recovering=true;cloud.recoveryStep='new';cloud.drawer=true}}
+    catch{}
     try{
       const sdk=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.0/+esm');
       cloud.client=sdk.createClient(SUPABASE_URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
@@ -1287,7 +1342,8 @@ render=function(){if(tab==='wishlist'||tab==='passport'){api.renderPage(tab==='w
       await onSession(data.session);
       cloud.client.auth.onAuthStateChange((event,session)=>{
         if(event==='INITIAL_SESSION')return;
-        setTimeout(()=>void onSession(session),0);
+        if(event==='PASSWORD_RECOVERY'){cloud.recovering=true;cloud.recoveryStep='new';cloud.drawer=true}
+        setTimeout(()=>{void onSession(session);renderPanel()},0);
       });
     }catch(error){cloud.loading=false;cloud.error='Cloud sign-in unavailable: '+(error.message||error);render();renderPanel()}
   }
