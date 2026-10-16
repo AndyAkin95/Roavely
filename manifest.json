@@ -1,11 +1,25 @@
 {
-  "name":"Roavely",
-  "short_name":"Roavely",
-  "description":"Plan together. Go anywhere.",
-  "start_url":"./",
-  "scope":"./",
-  "display":"standalone",
-  "background_color":"#f4f6fb",
-  "theme_color":"#16233d",
-  "icons":[{"src":"./icons/apple-touch-icon.png","sizes":"180x180","type":"image/png"}]
+  "name": "Roavely",
+  "short_name": "Roavely",
+  "description": "Plan together. Go anywhere.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f6fb",
+  "theme_color": "#16233d",
+  "icons": [
+    {
+      "src": "./icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/roavely.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "id": "./",
+  "orientation": "any"
 }
