@@ -1,5 +1,5 @@
-const CACHE='roavely-v9-startup-recovery-20261015';
-const ASSETS=['./','./index.html','./styles.css','./phase3.css','./app.js','./phase3-discover.js','./phase3-crew.js','./phase3-planner.js','./phase4.css','./phase4-board.js','./phase4-finance.js','./phase4-personal.js','./phase4-packing.js','./phase4-location.js','./phase4-memories.js','./cloud.css','./cloud-core.js','./cloud-actions.js','./manifest.json','./icons/apple-touch-icon.png','./icons/favicon.png','./icons/roavely.svg'];
+const CACHE='roavely-v10-onebundle-20261015';
+const ASSETS=['./','./index.html','./styles.css','./phase3.css','./app.js','./phase3-discover.js','./phase3-crew.js','./phase3-planner.js','./phase4.css','./phase4-board.js','./phase4-finance.js','./phase4-personal.js','./phase4-packing.js','./phase4-location.js','./phase4-memories.js','./cloud.css','./cloud-core.js','./cloud-actions.js','./roavely-bundle.js','./manifest.json','./icons/apple-touch-icon.png','./icons/favicon.png','./icons/roavely.svg'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))),self.clients.claim()]))});
 self.addEventListener('fetch',e=>{
