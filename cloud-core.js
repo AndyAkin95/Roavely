@@ -24,6 +24,22 @@
   window.cloudOpen=()=>{cloud.drawer=true;renderPanel()};
   window.cloudClose=()=>{cloud.drawer=false;document.getElementById('cloud-panel')?.remove()};
   function fieldLabel(label,input){return `<label class="cloud-field"><span>${label}</span>${input}</label>`}
+  function pendingPanelHTML(){
+  const state=cloud.access?.status||'pending',accepted=cloud.access?.accepted_terms_version==='2026-10';
+  const heading=state==='rejected'?'Application declined':state==='suspended'?'Account suspended':'Waiting for administrator approval';
+  return `<div class="cloud-account"><b>${escapeHtml(cloud.profile?.display_name||cloud.user.email)}</b><small>${escapeHtml(cloud.user.email)}</small></div>
+  <div class="cloud-pending"><b>${escapeHtml(heading)}</b><p>Email verification is separate from administrator approval. Your account cannot join or create real trips until approved.</p>
+  ${accepted?'<p class="cloud-success">✓ Terms & Conditions accepted</p>':`<form onsubmit="cloudAcceptTerms(event)"><label class="cloud-terms"><input type="checkbox" name="agrees" value="on" required> <span>I accept the <a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms & Conditions</a> (2026-10).</span></label><button class="btn blue full-width">Accept the Terms</button></form>`}
+  <button type="button" class="btn secondary full-width" onclick="cloudRefresh()">Check approval status</button></div>
+  <button type="button" class="cloud-logout" onclick="cloudSignOut()">Sign out</button>`;
+}
+  function adminQueueHtml(){
+ const queue=cloud.queue||[];
+ return `<div class="cloud-card"><b>🛡️ Administrator — Membership applications</b><p class="cloud-muted">Only members who confirmed their email and accepted the current terms can be approved.</p>
+ <button type="button" class="btn secondary full-width" onclick="cloudReloadApprovals()">Refresh applications</button>
+ ${queue.map(r=>`<div class="cloud-review"><b>${escapeHtml(r.contact_email)}</b><small>${escapeHtml(r.status)} · ${r.email_verified?'Email verified':'Email unverified'} · ${r.accepted_terms_version==='2026-10'?'Terms accepted':'Terms not accepted'}</small>
+ <div class="cloud-review-actions"><button class="btn blue" ${!r.email_verified||r.accepted_terms_version!=='2026-10'?'disabled':''} onclick="cloudReviewAccount('${r.user_id}','approved')">Approve</button><button class="btn secondary" onclick="cloudReviewAccount('${r.user_id}','rejected')">Decline</button>${r.status==='approved'?`<button class="btn secondary" onclick="cloudReviewAccount('${r.user_id}','suspended')">Suspend</button>`:''}</div></div>`).join('')||'<p class="cloud-muted">No applications found.</p>'}</div>`;
+}
   function panelBody(){
     if(cloud.loading)return `<div class="cloud-wait">Connecting to the Roavely database…</div>`;
     if(!cloud.client)return `<p class="cloud-error">${escapeHtml(cloud.error||'Cloud services failed to load. Check your connection and reload.')}</p>`;
@@ -35,6 +51,7 @@
        ${cloud.signup?'<label class="cloud-terms"><input type="checkbox" name="accept_terms" value="on" required><span>I agree to the <a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a> (2026-10).</span></label>':''}
        <button class="btn blue full-width" ${cloud.busy?'disabled':''}>${cloud.signup?'Create account':'Log in'}</button>
       </form><p class="cloud-muted">Registration requires email verification and administrator approval. Check your Gmail Inbox, Updates and Spam for the confirmation email.</p><form onsubmit="cloudResendSignup(event)">${fieldLabel('Resend the verification email','<input type="email" name="resend_email" required value="'+escapeHtml(cloud.signupEmail)+'" placeholder="Registered email">')}<button class="btn secondary full-width">Resend confirmation email</button></form>`;
+    if(cloud.access?.status!=='approved')return pendingPanelHTML();
     const list=cloud.trips;
     return `<div class="cloud-account"><b>${escapeHtml(cloud.profile?.display_name||cloud.user.email||'Traveler')}</b><small>${escapeHtml(cloud.user.email)}</small></div>
     ${fieldLabel('Display name',`<form class="cloud-inline" onsubmit="cloudRename(event)"><input name="name" maxlength="80" required value="${escapeHtml(cloud.profile?.display_name||'Traveler')}"><button class="btn secondary">Save</button></form>`)}
@@ -47,6 +64,7 @@
       <button class="btn blue full-width">Create live trip</button></form></div>
     <div class="cloud-card"><b>Join friends</b><form onsubmit="cloudJoinTrip(event)">${fieldLabel('Invitation link or code',`<input name="token" required value="${escapeHtml(cloud.pendingInvite||'')}" placeholder="Paste a Roavely invitation">`)}<button class="btn secondary full-width">Join trip</button></form></div>
     ${active()?`<div class="cloud-card"><b>Invite your group</b><p class="cloud-muted">Owners can make a 7-day invite link with up to 20 uses.</p><button class="btn blue full-width" onclick="cloudGenerateInvite()">Create invitation link</button><div id="cloud-invite"></div></div>`:''}
+    ${cloud.access?.role==='admin'?adminQueueHtml():''}
     <button class="cloud-logout" onclick="cloudSignOut()">Sign out</button>`;
   }
   function renderPanel(){
@@ -260,6 +278,45 @@
     try{token=new URLSearchParams(location.search).get('invite');if(token&&/^[a-f0-9]{64}$/.test(token)){sessionStorage.setItem('roavely-invite-token',token);history.replaceState({},'',BASE)}}catch{}
     try{cloud.pendingInvite=token&&/^[a-f0-9]{64}$/.test(token)?token:sessionStorage.getItem('roavely-invite-token')}catch{}
   }
+  async function loadAdminQueue(){
+ if(cloud.access?.role!=='admin'||cloud.access?.status!=='approved')return;
+ const {data,error}=await cloud.client.rpc('list_roavely_access');
+ if(error)throw error;
+ cloud.queue=(data||[]).filter(x=>x.status==='pending'||x.status==='approved');
+}
+  window.cloudReloadApprovals=async()=>{try{await loadAdminQueue();renderPanel()}catch(error){fail(error)}};
+  window.cloudResendSignup=async function cloudResendSignup(e){
+ e.preventDefault();const email=String(new FormData(e.target).get('resend_email')||'').trim();
+ if(!email||!cloud.client)return;
+ try{
+   const {error}=await cloud.client.auth.resend({type:'signup',email,options:{emailRedirectTo:BASE}});
+   if(error)throw error;
+   cloud.signupEmail=email;
+   cloud.alert('A confirmation email was requested. Check your Inbox, Updates and Spam. Delivery is subject to email service limits.');
+   renderPanel();
+ }catch(error){fail(error)}
+};
+  window.cloudAcceptTerms=async function cloudAcceptTerms(e){
+ e.preventDefault();if(new FormData(e.target).get('agrees')!=='on')return;
+ try{
+   const {error}=await cloud.client.rpc('accept_roavely_terms',{p_version:'2026-10'});
+   if(error)throw error;
+   await onSession({user:cloud.user});
+   cloud.alert('Terms accepted. An administrator must approve your account before trip access.');
+   renderPanel();
+ }catch(error){fail(error)}
+};
+  window.cloudReviewAccount=async function cloudReviewAccount(id,action){
+ if(cloud.access?.role!=='admin'||!['approved','rejected','suspended'].includes(action))return;
+ if(!confirm('Confirm '+action+' for this traveler?'))return;
+ try{
+   const {error}=await cloud.client.rpc('admin_review_account',{p_user:id,p_action:action});
+   if(error)throw error;
+   await loadAdminQueue();
+   cloud.alert('Account updated: '+action);
+   renderPanel();
+ }catch(error){fail(error)}
+};
   async function boot(){
     readInvite();
     try{
