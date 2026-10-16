@@ -36,7 +36,7 @@
   const app=window.roavelyNext;
   app.init=init;
   app.money=v=>'$'+Math.round(Number(v)||0).toLocaleString('en-US');
-  app.renderPage=html=>$('#app').innerHTML=`<div class="shell">${top()}${html}${nav()}${modalHTML()}</div>`;
+  app.renderPage=html=>$('#app').innerHTML=`<div class="shell">${roavelyHeader()}${html}${nav()}${modalHTML()}</div>`;
   app.demoLabel=()=>`<span class="preview-note">LOCAL PREVIEW · OTHER TRAVELERS ARE DEMO DATA</span>`;
   app.candidates=candidates;
   app.score=d=>{
