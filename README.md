@@ -1,3 +1,9 @@
+# Phase 3 — Collaborative planning preview (October 2026)
+
+The current app now includes a **group destination compatibility engine** (interests + estimated budget fit), **swipe-based destination votes**, **Wildcard** adventures, **local group chat**, **availability date voting**, **city-grouped smart itinerary shortcuts**, **personal monthly savings tracking**, **date-aware Trip Mode**, **OpenStreetMap searches**, and an **in-app activity feed**.
+
+These screens are part of the local demo only. **Friends do not yet have synchronized accounts or live group updates**. Other travelers' profiles are illustrative and are labeled demo. The UI has no real-time hotel/flight pricing, route timings, external booking APIs, or remote push notifications. The dedicated database starting point is `backend/schema-draft.sql` and **has not been deployed**. It still requires security review and an independent Roavely Supabase project; never reuse DeckVault's database.
+
 # Roavely
 
 **Plan together. Go anywhere.**
