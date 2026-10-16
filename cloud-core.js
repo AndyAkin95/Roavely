@@ -339,6 +339,19 @@
 };
   window.cloudForgotPassword=()=>{cloud.recovering=true;cloud.recoveryStep='request';cloud.error='';cloud.drawer=true;renderPanel()};
   window.cloudCancelRecovery=()=>{cloud.recovering=false;cloud.error='';cloud.message='';renderPanel()};
+  window.cloudSendReset=async e=>{
+    e.preventDefault();
+    const email=String(new FormData(e.target).get('email')||'').trim();
+    if(!cloud.client||!email)return;
+    cloud.busy=true;cloud.recoveryEmail=email;renderPanel();
+    try{
+      const result=await cloud.client.auth.resetPasswordForEmail(email,{redirectTo:BASE});
+      if(result.error)throw result.error;
+      cloud.recovering=false;cloud.signup=false;cloud.error='';
+      cloud.message='If this address has a Roavely account, a reset email was requested. Check your inbox and Updates folder.';
+    }catch(error){cloud.error=String(error?.message||error)}
+    finally{cloud.busy=false;renderPanel()}
+  };
   async function boot(){
     readInvite();
     try{
