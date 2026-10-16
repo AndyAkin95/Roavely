@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 660">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2=".75" y2="1"><stop stop-color="#201d4a"/><stop offset=".4" stop-color="#774b90"/><stop offset=".72" stop-color="#eaa7b8"/><stop offset="1" stop-color="#f6c6a5"/></linearGradient>
+<linearGradient id="mount" x1=".2" y1="0" x2=".8" y2="1"><stop stop-color="#78829e"/><stop offset="1" stop-color="#2e425e"/></linearGradient>
+<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#5d7f98"/><stop offset="1" stop-color="#253955"/></linearGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
+<g id="petal"><path d="M0-11Q10-8 12 0Q8 10 0 12Q-9 7-12 0Q-7-8 0-11Z" fill="#ffe2e9"/><circle r="2" fill="#f5b1c5"/></g>
+</defs>
+<rect width="1440" height="660" fill="url(#sky)"/>
+<circle cx="980" cy="171" r="92" fill="#ffd8bc" opacity=".33" filter="url(#soft)"/>
+<circle cx="980" cy="171" r="65" fill="#ffe7cd" opacity=".55"/>
+<path d="M0 422Q185 390 335 424T720 420T1100 411T1440 424V660H0Z" fill="#6b6782" opacity=".37"/>
+<path d="M580 466 925 82 1245 466Z" fill="url(#mount)"/>
+<path d="M775 250 925 82 1067 252 1010 226 987 238 959 220 924 243 884 220 847 244 811 222Z" fill="#f1ecf5"/>
+<path d="M925 82 1042 249 987 225 959 208 926 244 878 213 843 233Z" fill="#ffffff" opacity=".27"/>
+<path d="M670 466Q795 420 900 453T1144 436T1440 455V660H670Z" fill="#505c72" opacity=".54"/>
+<path d="M0 459Q240 438 416 471T820 468T1440 468V660H0Z" fill="url(#sea)"/>
+<path d="M0 494Q270 486 515 501T1060 495T1440 493" fill="none" stroke="#e8a6ad" stroke-width="4" opacity=".38"/>
+<path d="M0 560Q240 548 532 565T1120 551T1440 563" fill="none" stroke="#d0b2c7" stroke-width="3" opacity=".23"/>
+<!-- torii -->
+<g transform="translate(350 278)">
+<path d="M-121 290 -116 44 -87 44 -75 290Z" fill="#692436"/>
+<path d="M92 290 104 44 132 44 143 290Z" fill="#692436"/>
+<path d="M-121 278h49v19h-49zM91 278h57v19H91z" fill="#361b2b"/>
+<path d="M-175 34Q5 57 180 27L179 3Q0 34-176 8Z" fill="#b93145"/>
+<path d="M-171 7Q5 17 174 0L187 19Q3 41-187 24Z" fill="#ed725a"/>
+<path d="M-130 82H135V105H-130Z" fill="#b73041"/>
+<rect x="-93" y="105" width="24" height="25" fill="#412037"/><rect x="79" y="105" width="24" height="25" fill="#412037"/>
+<rect x="-87" y="51" width="26" height="12" fill="#ffb09b" opacity=".52"/>
+</g>
+<!-- branches on left -->
+<g fill="none" stroke="#37213d" stroke-linecap="round">
+<path d="M-22 18Q98 98 230 153Q330 186 399 256" stroke-width="25"/>
+<path d="M118 110Q145 46 162 0" stroke-width="13"/>
+<path d="M221 151Q251 76 311 20" stroke-width="13"/>
+<path d="M268 166Q330 114 410 91" stroke-width="10"/>
+<path d="M87 101Q112 171 177 224" stroke-width="12"/>
+</g>
+<!-- blossoms clusters -->
+<g fill="#ef9fb9">
+<circle cx="66" cy="97" r="34"/><circle cx="95" cy="68" r="36"/><circle cx="135" cy="111" r="42"/>
+<circle cx="160" cy="36" r="46"/><circle cx="206" cy="49" r="43"/><circle cx="239" cy="88" r="37"/>
+<circle cx="292" cy="35" r="42"/><circle cx="332" cy="59" r="37"/><circle cx="364" cy="113" r="30"/>
+<circle cx="171" cy="194" r="38"/><circle cx="229" cy="183" r="28"/><circle cx="382" cy="213" r="28"/>
+</g>
+<g fill="#fbd9de" opacity=".82"><circle cx="93" cy="110" r="23"/><circle cx="159" cy="69" r="27"/><circle cx="234" cy="67" r="21"/><circle cx="324" cy="91" r="25"/><circle cx="196" cy="175" r="22"/><circle cx="385" cy="154" r="22"/></g>
+<!-- cherry blossom right upper -->
+<path d="M1447 0Q1371 97 1264 145L1155 225" stroke="#34223f" stroke-width="19" fill="none" stroke-linecap="round"/>
+<path d="M1345 85Q1296 29 1260 0M1296 120Q1249 92 1194 82" stroke="#34223f" stroke-width="11" fill="none"/>
+<g fill="#f7adc4"><circle cx="1401" cy="41" r="51"/><circle cx="1357" cy="89" r="42"/><circle cx="1277" cy="112" r="47"/><circle cx="1233" cy="173" r="41"/><circle cx="1200" cy="67" r="36"/><circle cx="1301" cy="25" r="52"/></g>
+<g fill="#ffe1e5" opacity=".76"><circle cx="1387" cy="76" r="24"/><circle cx="1248" cy="117" r="24"/><circle cx="1306" cy="59" r="25"/></g>
+<g opacity=".86"><use href="#petal" transform="translate(458 245) rotate(28)"/><use href="#petal" transform="translate(521 160) rotate(41) scale(.7)"/><use href="#petal" transform="translate(625 300) rotate(65) scale(.75)"/><use href="#petal" transform="translate(1088 354) rotate(43) scale(.55)"/><use href="#petal" transform="translate(100 385) rotate(47) scale(.65)"/><use href="#petal" transform="translate(1375 345) rotate(58) scale(.8)"/></g>
+</svg>
