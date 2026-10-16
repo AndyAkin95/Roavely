@@ -40,9 +40,29 @@
  ${queue.map(r=>`<div class="cloud-review"><b>${escapeHtml(r.contact_email)}</b><small>${escapeHtml(r.status)} · ${r.email_verified?'Email verified':'Email unverified'} · ${r.accepted_terms_version==='2026-10'?'Terms accepted':'Terms not accepted'}</small>
  <div class="cloud-review-actions"><button class="btn blue" ${!r.email_verified||r.accepted_terms_version!=='2026-10'?'disabled':''} onclick="cloudReviewAccount('${r.user_id}','approved')">Approve</button><button class="btn secondary" onclick="cloudReviewAccount('${r.user_id}','rejected')">Decline</button>${r.status==='approved'?`<button class="btn secondary" onclick="cloudReviewAccount('${r.user_id}','suspended')">Suspend</button>`:''}</div></div>`).join('')||'<p class="cloud-muted">No applications found.</p>'}</div>`;
 }
+  function recoveryPanel(){
+  if(cloud.recoveryStep==='new'&&cloud.user){
+    return `<div class="cloud-account"><b>Choose a new password</b><small>${escapeHtml(cloud.user.email||'Roavely account')}</small></div>
+      <p class="cloud-muted">Your password-reset link signed you in securely. Set a new password below; your trips and administrator role are preserved.</p>
+      <form onsubmit="cloudUpdatePassword(event)">
+        ${fieldLabel('New password','<input name="password" type="password" autocomplete="new-password" minlength="12" required>')}
+        ${fieldLabel('Confirm new password','<input name="confirm_password" type="password" autocomplete="new-password" minlength="12" required>')}
+        <button class="btn blue full-width" ${cloud.busy?'disabled':''}>Save new password</button>
+      </form>`;
+  }
+  return `<div class="cloud-account"><b>Reset your password</b></div>
+    <p class="cloud-muted">Use the email address you registered with. This resets the password on your existing account without affecting its access or administrator role.</p>
+    <form onsubmit="cloudSendReset(event)">
+      ${fieldLabel('Registered email',`<input type="email" name="email" autocomplete="email" required value="${escapeHtml(cloud.recoveryEmail||cloud.signupEmail||'')}">`)}
+      <button class="btn blue full-width" ${cloud.busy?'disabled':''}>Send password-reset email</button>
+    </form>
+    <button class="btn secondary full-width" style="margin-top:12px" onclick="cloudCancelRecovery()">Back to sign in</button>
+    <p class="cloud-muted">If the email sends you to localhost, the administrator must update Supabase's Site URL and Redirect URLs.</p>`;
+}
   function panelBody(){
     if(cloud.loading)return `<div class="cloud-wait">Connecting to the Roavely database…</div>`;
     if(!cloud.client)return `<p class="cloud-error">${escapeHtml(cloud.error||'Cloud services failed to load. Check your connection and reload.')}</p>`;
+    if(cloud.recovering)return recoveryPanel();
     if(!cloud.user)return `<p class="cloud-muted">Create a free Roavely account to save real trips, invite friends and sync plans between phones. The existing demo stays on this device.</p>
       <div class="cloud-segments"><button onclick="cloudSetSignUp(false)" class="${cloud.signup?'':'selected'}">Log in</button><button onclick="cloudSetSignUp(true)" class="${cloud.signup?'selected':''}">Create account</button></div>
       <form onsubmit="cloudLogin(event)">
@@ -50,7 +70,7 @@
        ${fieldLabel('Password','<input type="password" name="password" autocomplete="'+(cloud.signup?'new-password':'current-password')+'" minlength="8" required>')}
        ${cloud.signup?'<label class="cloud-terms"><input type="checkbox" name="accept_terms" value="on" required><span>I agree to the <a href="./terms.html" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a> (2026-10).</span></label>':''}
        <button class="btn blue full-width" ${cloud.busy?'disabled':''}>${cloud.signup?'Create account':'Log in'}</button>
-      </form><p class="cloud-muted">Registration requires email verification and administrator approval. Check your Gmail Inbox, Updates and Spam for the confirmation email.</p><form onsubmit="cloudResendSignup(event)">${fieldLabel('Resend the verification email','<input type="email" name="resend_email" required value="'+escapeHtml(cloud.signupEmail)+'" placeholder="Registered email">')}<button class="btn secondary full-width">Resend confirmation email</button></form>`;
+      </form>${!cloud.signup?'<button type="button" class="cloud-forgot" onclick="cloudForgotPassword()">Forgot password?</button>':''}<p class="cloud-muted">Registration requires email verification and administrator approval. Check your Gmail Inbox, Updates and Spam for the confirmation email.</p><form onsubmit="cloudResendSignup(event)">${fieldLabel('Resend the verification email','<input type="email" name="resend_email" required value="'+escapeHtml(cloud.signupEmail)+'" placeholder="Registered email">')}<button class="btn secondary full-width">Resend confirmation email</button></form>`;
     if(cloud.access?.status!=='approved'||cloud.access?.accepted_terms_version!=='2026-10')return pendingPanelHTML();
     const list=cloud.trips;
     return `<div class="cloud-account"><b>${escapeHtml(cloud.profile?.display_name||cloud.user.email||'Traveler')}</b><small>${escapeHtml(cloud.user.email)}</small></div>
