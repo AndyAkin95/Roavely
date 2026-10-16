@@ -32,6 +32,7 @@ jobs:
           cp index.html manifest.json sw.js *.css *.js public-site/
           cp -R icons public-site/
           test -s public-site/index.html
+          test -s public-site/roavely-bundle.js
           test -s public-site/cloud-core.js
           test -s public-site/cloud-actions.js
           test -s public-site/icons/apple-touch-icon.png
