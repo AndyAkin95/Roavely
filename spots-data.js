@@ -4377,5 +4377,1429 @@ window.roavelySpots=[
     ],
     "url": "https://www.hilton.com/en/hotels/tyotbtw-hilton-tokyo-bay/",
     "image": ""
+  },
+  {
+    "id": "jp-osaka-dotonbori",
+    "name": "Dotonbori",
+    "destination": "Japan",
+    "city": "Osaka",
+    "area": "Namba",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Nightlife",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/spot/2207/destinations/kansai/osaka/dotonbori-and-shinsaibashi/",
+    "image": "",
+    "description": "Neon canal walks and Osaka street food.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-osaka-osaka-castle",
+    "name": "Osaka Castle",
+    "destination": "Japan",
+    "city": "Osaka",
+    "area": "Osakajo",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Culture",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/spot/1087/destinations/kansai/osaka/osaka-castle-and-around/",
+    "image": "",
+    "description": "Castle grounds and a landmark view of Osaka.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-osaka-kuromon-market",
+    "name": "Kuromon Market",
+    "destination": "Japan",
+    "city": "Osaka",
+    "area": "Nipponbashi",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Shopping"
+    ],
+    "url": "https://osaka-info.jp/en/spot/gastronomy-kuromon/",
+    "image": "",
+    "description": "Browse food stalls in a lively covered market.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-osaka-osaka-aquarium-kaiyukan",
+    "name": "Osaka Aquarium Kaiyukan",
+    "destination": "Japan",
+    "city": "Osaka",
+    "area": "Tempozan",
+    "category": "Activities",
+    "tags": [
+      "Wildlife",
+      "Family"
+    ],
+    "url": "https://osaka-info.jp/en/",
+    "image": "",
+    "description": "Explore marine life at Osaka’s waterfront aquarium.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-osaka-umeda-sky-building",
+    "name": "Umeda Sky Building",
+    "destination": "Japan",
+    "city": "Osaka",
+    "area": "Umeda",
+    "category": "Attractions",
+    "tags": [
+      "Architecture",
+      "Photography"
+    ],
+    "url": "https://osaka-info.jp/en/spot/umeda-sky-building/",
+    "image": "",
+    "description": "A striking skyline landmark with an observation deck.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-yokohama-yokohama-chinatown",
+    "name": "Yokohama Chinatown",
+    "destination": "Japan",
+    "city": "Yokohama",
+    "area": "Chinatown",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Culture"
+    ],
+    "url": "https://www.yokohamajapan.com/things-to-do/detail.php?bbid=815",
+    "image": "",
+    "description": "Explore gates, side streets, and Chinese dining.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-yokohama-sankeien-garden",
+    "name": "Sankeien Garden",
+    "destination": "Japan",
+    "city": "Yokohama",
+    "area": "Honmoku",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "History",
+      "Photography"
+    ],
+    "url": "https://www.yokohamajapan.com/things-to-do/detail.php?bbid=87",
+    "image": "",
+    "description": "A landscaped garden with relocated historic buildings.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-yokohama-yokohama-red-brick-warehouse",
+    "name": "Yokohama Red Brick Warehouse",
+    "destination": "Japan",
+    "city": "Yokohama",
+    "area": "Shinko",
+    "category": "Shopping",
+    "tags": [
+      "Shopping",
+      "Architecture"
+    ],
+    "url": "https://www.yokohamajapan.com/things-to-do/detail.php?bbid=184",
+    "image": "",
+    "description": "Historic waterfront warehouses filled with shops and dining.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-yokohama-cupnoodles-museum-yokohama",
+    "name": "CUPNOODLES MUSEUM YOKOHAMA",
+    "destination": "Japan",
+    "city": "Yokohama",
+    "area": "Minato Mirai",
+    "category": "Museums & art",
+    "tags": [
+      "Food",
+      "Family"
+    ],
+    "url": "https://www.cupnoodles-museum.jp/en/yokohama/",
+    "image": "https://www.cupnoodles-museum.jp/uploads/2017/09/og_yokohama.png",
+    "description": "Learn about instant noodles and explore hands-on exhibits.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-yokohama-yamashita-park",
+    "name": "Yamashita Park",
+    "destination": "Japan",
+    "city": "Yokohama",
+    "area": "Waterfront",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Photography",
+      "Relaxation"
+    ],
+    "url": "https://www.yokohamajapan.com/things-to-do/",
+    "image": "",
+    "description": "A harborfront stroll with open views of the port.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kanazawa-kenrokuen-garden",
+    "name": "Kenrokuen Garden",
+    "destination": "Japan",
+    "city": "Kanazawa",
+    "area": "Kenrokuen",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/spot/1399/spot/1399/",
+    "image": "",
+    "description": "Seasonal garden scenery beside Kanazawa Castle.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kanazawa-kanazawa-castle-park",
+    "name": "Kanazawa Castle Park",
+    "destination": "Japan",
+    "city": "Kanazawa",
+    "area": "Marunouchi",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Architecture"
+    ],
+    "url": "https://visitkanazawa.jp/en/spot/",
+    "image": "https://visitkanazawa.jp/common/images/ogImg.png",
+    "description": "Explore the castle grounds and reconstructed structures.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kanazawa-higashi-chaya-district",
+    "name": "Higashi Chaya District",
+    "destination": "Japan",
+    "city": "Kanazawa",
+    "area": "Higashiyama",
+    "category": "Attractions",
+    "tags": [
+      "Culture",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/spot/1405/spot/1405/",
+    "image": "",
+    "description": "Historic teahouse streets and traditional facades.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kanazawa-omicho-market",
+    "name": "Omicho Market",
+    "destination": "Japan",
+    "city": "Kanazawa",
+    "area": "Musashigatsuji",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Shopping"
+    ],
+    "url": "https://visitkanazawa.jp/en/spot/",
+    "image": "https://visitkanazawa.jp/common/images/ogImg.png",
+    "description": "Discover Kanazawa’s market food and local produce.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kanazawa-nishi-chaya-district",
+    "name": "Nishi Chaya District",
+    "destination": "Japan",
+    "city": "Kanazawa",
+    "area": "Nomachi",
+    "category": "Attractions",
+    "tags": [
+      "Culture",
+      "History"
+    ],
+    "url": "https://visitkanazawa.jp/en/attractions/index_1_2__6.html",
+    "image": "",
+    "description": "A smaller historic teahouse district to explore on foot.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kumamoto-kumamoto-castle",
+    "name": "Kumamoto Castle",
+    "destination": "Japan",
+    "city": "Kumamoto",
+    "area": "Chuo Ward",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Architecture"
+    ],
+    "url": "https://castle.kumamoto-guide.jp/en/about/",
+    "image": "",
+    "description": "Visit Kumamoto’s landmark castle; check current restoration access.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kumamoto-suizenji-jojuen-garden",
+    "name": "Suizenji Jojuen Garden",
+    "destination": "Japan",
+    "city": "Kumamoto",
+    "area": "Suizenji",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Culture",
+      "Photography"
+    ],
+    "url": "https://www.suizenji.or.jp/en/news/suizenji-admission-fee-revision-2026-04-01/",
+    "image": "",
+    "description": "A traditional strolling garden with a miniature Mount Fuji.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kumamoto-sakura-no-baba-josaien",
+    "name": "Sakura-no-Baba Josaien",
+    "destination": "Japan",
+    "city": "Kumamoto",
+    "area": "Castle area",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "History",
+      "Shopping"
+    ],
+    "url": "https://kumamoto-guide.jp/en/modelcourse/kumamotocastle.html",
+    "image": "",
+    "description": "Try local specialties in a recreated castle-town setting.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kumamoto-kamitori-and-shimotori-arcades",
+    "name": "Kamitori and Shimotori Arcades",
+    "destination": "Japan",
+    "city": "Kumamoto",
+    "area": "Downtown",
+    "category": "Shopping",
+    "tags": [
+      "Shopping",
+      "Food"
+    ],
+    "url": "https://kumamoto-guide.jp/en/modelcourse/kumamotocastle.html",
+    "image": "",
+    "description": "Covered shopping streets at the heart of downtown.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kumamoto-lake-ezu",
+    "name": "Lake Ezu",
+    "destination": "Japan",
+    "city": "Kumamoto",
+    "area": "Higashi Ward",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Relaxation"
+    ],
+    "url": "https://kumamoto-guide.jp/foreign-topics/detail/171",
+    "image": "",
+    "description": "Lakeside green space for a gentler break from the city.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-sapporo-odori-park",
+    "name": "Odori Park",
+    "destination": "Japan",
+    "city": "Sapporo",
+    "area": "Chuo Ward",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Relaxation"
+    ],
+    "url": "https://www.sapporo.travel/en/spot/facility/odori_park/",
+    "image": "",
+    "description": "A green corridor through central Sapporo.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-sapporo-nijo-fish-market",
+    "name": "Nijo Fish Market",
+    "destination": "Japan",
+    "city": "Sapporo",
+    "area": "Chuo Ward",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Shopping"
+    ],
+    "url": "https://www.sapporo.travel/en/spot/facility/nijo_fish_market/",
+    "image": "",
+    "description": "Browse seafood stalls and breakfast options.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-sapporo-mount-moiwa-ropeway",
+    "name": "Mount Moiwa Ropeway",
+    "destination": "Japan",
+    "city": "Sapporo",
+    "area": "Fushimi",
+    "category": "Activities",
+    "tags": [
+      "Nature",
+      "Photography"
+    ],
+    "url": "https://www.sapporo.travel/en/spot/facility/mount_moiwayama/",
+    "image": "https://www.sapporo.travel/cms/wp-content/uploads/2020/10/moiwa-yakei-1200x600-1.jpg",
+    "description": "Ride up for panoramic city views, especially after dark.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-sapporo-moerenuma-park",
+    "name": "Moerenuma Park",
+    "destination": "Japan",
+    "city": "Sapporo",
+    "area": "Higashi Ward",
+    "category": "Nature",
+    "tags": [
+      "Art",
+      "Nature",
+      "Architecture"
+    ],
+    "url": "https://www.sapporo.travel/en/spot/facility/moerenuma_park/",
+    "image": "https://www.sapporo.travel/cms/wp-content/uploads/2020/10/moerenight.jpg",
+    "description": "A sculpture-like landscape park with bold geometric forms.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-sapporo-tanuki-koji-shopping-street",
+    "name": "Tanuki Koji Shopping Street",
+    "destination": "Japan",
+    "city": "Sapporo",
+    "area": "Downtown",
+    "category": "Shopping",
+    "tags": [
+      "Shopping",
+      "Food"
+    ],
+    "url": "https://visit.sapporo.travel/itineraries/03/",
+    "image": "",
+    "description": "Covered shopping with side streets full of food stops.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-takayama-miyagawa-morning-market",
+    "name": "Miyagawa Morning Market",
+    "destination": "Japan",
+    "city": "Takayama",
+    "area": "Miyagawa River",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Shopping",
+      "Culture"
+    ],
+    "url": "https://www.hida.jp/english/touristattractions/takayamacity/historyandculture/4000162.html",
+    "image": "https://www.hida.jp/_template_/_site_/hida_jp/_res/images/sns/ogimage.png",
+    "description": "Morning stalls selling produce, snacks, and crafts.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-takayama-hida-folk-village",
+    "name": "Hida Folk Village",
+    "destination": "Japan",
+    "city": "Takayama",
+    "area": "Kamiokamotomachi",
+    "category": "Museums & art",
+    "tags": [
+      "History",
+      "Architecture",
+      "Culture"
+    ],
+    "url": "https://www.hida.jp/english/touristattractions/takayamacity/historyandculture/4000165.html",
+    "image": "https://www.hida.jp/_template_/_site_/hida_jp/_res/images/sns/ogimage.png",
+    "description": "Traditional rural buildings in an open-air village.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-takayama-sanmachi-old-town",
+    "name": "Sanmachi Old Town",
+    "destination": "Japan",
+    "city": "Takayama",
+    "area": "Old Town",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Photography",
+      "Shopping"
+    ],
+    "url": "https://www.hida.jp/english/touristattractions/takayamacity/modelitinerary/4000211.html",
+    "image": "https://www.hida.jp/_template_/_site_/hida_jp/_res/images/sns/ogimage.png",
+    "description": "Walk preserved streets lined with merchant townhouses.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-takayama-takayama-jinya",
+    "name": "Takayama Jinya",
+    "destination": "Japan",
+    "city": "Takayama",
+    "area": "Hachikenmachi",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Culture"
+    ],
+    "url": "https://www.hida.jp/english/touristattractions/takayamacity/modelitinerary/4000211.html",
+    "image": "https://www.hida.jp/_template_/_site_/hida_jp/_res/images/sns/ogimage.png",
+    "description": "Explore the city’s historic government-house area.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-takayama-jinya-morning-market",
+    "name": "Jinya Morning Market",
+    "destination": "Japan",
+    "city": "Takayama",
+    "area": "Hachikenmachi",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Shopping"
+    ],
+    "url": "https://www.hida.jp/english/touristattractions/takayamacity/modelitinerary/4000211.html",
+    "image": "https://www.hida.jp/_template_/_site_/hida_jp/_res/images/sns/ogimage.png",
+    "description": "A second morning market in front of the Jinya.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hiroshima-peace-memorial-park-and-atomic-bomb-dome",
+    "name": "Peace Memorial Park and Atomic Bomb Dome",
+    "destination": "Japan",
+    "city": "Hiroshima",
+    "area": "Nakajima",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Culture"
+    ],
+    "url": "https://www.japan.travel/en/in/walks-and-tours/in-hiroshima/",
+    "image": "",
+    "description": "A place for reflection on the atomic bombing and peace.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hiroshima-hiroshima-peace-memorial-museum",
+    "name": "Hiroshima Peace Memorial Museum",
+    "destination": "Japan",
+    "city": "Hiroshima",
+    "area": "Nakajima",
+    "category": "Museums & art",
+    "tags": [
+      "History",
+      "Culture"
+    ],
+    "url": "https://www.japan.travel/en/in/walks-and-tours/in-hiroshima/",
+    "image": "",
+    "description": "Learn about the bombing and its human consequences.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hiroshima-shukkeien-garden",
+    "name": "Shukkeien Garden",
+    "destination": "Japan",
+    "city": "Hiroshima",
+    "area": "Kaminoboricho",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Photography",
+      "Relaxation"
+    ],
+    "url": "https://www.japan.travel/en/spot/889/spot/889/",
+    "image": "",
+    "description": "A compact landscape garden with paths around a pond.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hiroshima-okonomimura",
+    "name": "Okonomimura",
+    "destination": "Japan",
+    "city": "Hiroshima",
+    "area": "Shintenchi",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Culture"
+    ],
+    "url": "https://www.japan.travel/en/itineraries/vibrant-hiroshima-in-autumn/",
+    "image": "",
+    "description": "Discover Hiroshima-style okonomiyaki at a food-focused stop.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nara-todaiji-temple",
+    "name": "Todaiji Temple",
+    "destination": "Japan",
+    "city": "Nara",
+    "area": "Nara Park",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Culture",
+      "Architecture"
+    ],
+    "url": "https://www.japan.travel/en/spot/1009/spot/1009/",
+    "image": "",
+    "description": "See the Great Buddha hall in historic Nara.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nara-kasuga-taisha-shrine",
+    "name": "Kasuga Taisha Shrine",
+    "destination": "Japan",
+    "city": "Nara",
+    "area": "Nara Park",
+    "category": "Attractions",
+    "tags": [
+      "Culture",
+      "History",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/spot/1013/spot/1013/",
+    "image": "",
+    "description": "Explore a shrine known for its many lanterns.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nara-nara-park",
+    "name": "Nara Park",
+    "destination": "Japan",
+    "city": "Nara",
+    "area": "Central Nara",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Wildlife",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/destinations/kansai/nara/nara-park-and-around",
+    "image": "",
+    "description": "Open parkland with deer and major temples nearby.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nara-naramachi",
+    "name": "Naramachi",
+    "destination": "Japan",
+    "city": "Nara",
+    "area": "Old Town",
+    "category": "Shopping",
+    "tags": [
+      "Culture",
+      "Shopping",
+      "History"
+    ],
+    "url": "https://www.japan.travel/en/spot/2001/spot/2001/",
+    "image": "",
+    "description": "Wander old merchant streets, craft shops, and cafes.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nara-kofukuji-temple",
+    "name": "Kofukuji Temple",
+    "destination": "Japan",
+    "city": "Nara",
+    "area": "Noboriojicho",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Culture"
+    ],
+    "url": "https://www.japan.travel/spot/1012/",
+    "image": "",
+    "description": "Add another major temple complex to a central Nara walk.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hakone-hakone-open-air-museum",
+    "name": "Hakone Open-Air Museum",
+    "destination": "Japan",
+    "city": "Hakone",
+    "area": "Gora",
+    "category": "Museums & art",
+    "tags": [
+      "Art",
+      "Nature",
+      "Photography"
+    ],
+    "url": "https://www.hakone-oam.or.jp/en/",
+    "image": "https://www.hakone-oam.or.jp/mod/homes/ogpphoto.jpg",
+    "description": "Outdoor sculpture framed by the Hakone mountains.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hakone-owakudani",
+    "name": "Owakudani",
+    "destination": "Japan",
+    "city": "Hakone",
+    "area": "Sengokuhara",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Adventure"
+    ],
+    "url": "https://www.japan.travel/en/spot/1566/spot/1566/",
+    "image": "",
+    "description": "A volcanic valley reached by ropeway; check operating conditions.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hakone-hakone-shrine",
+    "name": "Hakone Shrine",
+    "destination": "Japan",
+    "city": "Hakone",
+    "area": "Moto-Hakone",
+    "category": "Attractions",
+    "tags": [
+      "Culture",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/national-parks/parks/fuji-hakone-izu/see-and-do/hakone-jinja-shrine/",
+    "image": "",
+    "description": "A wooded shrine with a red torii beside Lake Ashi.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hakone-lake-ashi-cruise",
+    "name": "Lake Ashi Cruise",
+    "destination": "Japan",
+    "city": "Hakone",
+    "area": "Lake Ashi",
+    "category": "Activities",
+    "tags": [
+      "Nature",
+      "Photography",
+      "Relaxation"
+    ],
+    "url": "https://www.japan.travel/national-parks/parks/fuji-hakone-izu/see-and-do/hakone-highlights-ashinoko-boat-cruise-and-historical-walk/",
+    "image": "",
+    "description": "See the forested lakeshore from the water.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hakone-hakone-tozan-railway",
+    "name": "Hakone Tozan Railway",
+    "destination": "Japan",
+    "city": "Hakone",
+    "area": "Gora / Hakone-Yumoto",
+    "category": "Activities",
+    "tags": [
+      "Nature",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/itineraries/outdoor-art-hot-spring-resorts-and-fuji-views-in-hakone/",
+    "image": "",
+    "description": "A mountain railway journey through wooded valleys.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kobe-kobe-harborland",
+    "name": "Kobe Harborland",
+    "destination": "Japan",
+    "city": "Kobe",
+    "area": "Waterfront",
+    "category": "Shopping",
+    "tags": [
+      "Shopping",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/spot/1041",
+    "image": "",
+    "description": "Waterfront shopping, dining, and harbor views.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kobe-kobe-nunobiki-herb-gardens-and-ropeway",
+    "name": "Kobe Nunobiki Herb Gardens and Ropeway",
+    "destination": "Japan",
+    "city": "Kobe",
+    "area": "Nunobiki",
+    "category": "Activities",
+    "tags": [
+      "Nature",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/itineraries/exploring-kobe-a-city-where-the-tradition-and-modernity-meet/",
+    "image": "",
+    "description": "Ride above the city to hillside gardens.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kobe-nankinmachi-chinatown",
+    "name": "Nankinmachi Chinatown",
+    "destination": "Japan",
+    "city": "Kobe",
+    "area": "Motomachi",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Culture"
+    ],
+    "url": "https://www.japan.travel/en/spot/1037/",
+    "image": "https://res-1.cloudinary.com/jnto/image/upload/w_1000,h_667,c_fill,f_auto,fl_lossy,q_auto/v1514382076/hyogo/Hyogo754_2",
+    "description": "Explore Kobe’s compact Chinatown and food stalls.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kobe-kitano-historic-district",
+    "name": "Kitano Historic District",
+    "destination": "Japan",
+    "city": "Kobe",
+    "area": "Kitano",
+    "category": "Attractions",
+    "tags": [
+      "Architecture",
+      "History",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/spot/1044/",
+    "image": "https://res-1.cloudinary.com/jnto/image/upload/w_1000,h_667,c_fill,f_auto,fl_lossy,q_auto/v1668401007/hyogo/Hyogo_t_id261_1",
+    "description": "Former foreign residences and hillside streets.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kobe-meriken-park",
+    "name": "Meriken Park",
+    "destination": "Japan",
+    "city": "Kobe",
+    "area": "Waterfront",
+    "category": "Nature",
+    "tags": [
+      "Photography",
+      "Relaxation"
+    ],
+    "url": "https://www.japan.travel/en/itineraries/exploring-kobe-a-city-where-the-tradition-and-modernity-meet/spot/1038/",
+    "image": "",
+    "description": "A relaxed harborfront stop for city views.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-fukuoka-fukuoka-yatai-food-stalls",
+    "name": "Fukuoka Yatai Food Stalls",
+    "destination": "Japan",
+    "city": "Fukuoka",
+    "area": "Nakasu / Tenjin",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Nightlife",
+      "Culture"
+    ],
+    "url": "https://www.japan.travel/en/spot/273/spot/273/",
+    "image": "",
+    "description": "Try casual evening dining at the city’s small food stalls.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-fukuoka-ohori-park",
+    "name": "Ohori Park",
+    "destination": "Japan",
+    "city": "Fukuoka",
+    "area": "Chuo Ward",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Relaxation"
+    ],
+    "url": "https://www.japan.travel/en/spot/2260/spot/2260/",
+    "image": "",
+    "description": "Walk the paths around a large central pond.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-fukuoka-kushida-shrine",
+    "name": "Kushida Shrine",
+    "destination": "Japan",
+    "city": "Fukuoka",
+    "area": "Hakata",
+    "category": "Attractions",
+    "tags": [
+      "Culture",
+      "History"
+    ],
+    "url": "https://www.japan.travel/en/itineraries/exploring-fukuoka-citys-past-and-present/",
+    "image": "",
+    "description": "Explore a shrine closely associated with Hakata culture.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nagasaki-glover-garden",
+    "name": "Glover Garden",
+    "destination": "Japan",
+    "city": "Nagasaki",
+    "area": "Minamiyamate",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Architecture",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/spot/753/spot/753/",
+    "image": "",
+    "description": "Historic Western-style residences overlooking the port.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nagasaki-dejima",
+    "name": "Dejima",
+    "destination": "Japan",
+    "city": "Nagasaki",
+    "area": "Dejimamachi",
+    "category": "Museums & art",
+    "tags": [
+      "History",
+      "Culture"
+    ],
+    "url": "https://www.japan.travel/en/spot/754/spot/754/",
+    "image": "",
+    "description": "Explore the former trading post and its international history.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nagasaki-mount-inasa",
+    "name": "Mount Inasa",
+    "destination": "Japan",
+    "city": "Nagasaki",
+    "area": "Inasayama",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/spot/338/",
+    "image": "https://res-4.cloudinary.com/jnto/image/upload/w_1000,h_667,c_fill,f_auto,fl_lossy,q_auto/v1514399922/nagasaki/Nagasaki2047_4",
+    "description": "A viewpoint for Nagasaki’s harbor and night lights.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nagasaki-nagasaki-peace-park",
+    "name": "Nagasaki Peace Park",
+    "destination": "Japan",
+    "city": "Nagasaki",
+    "area": "Matsuyama",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Culture"
+    ],
+    "url": "https://faq.japan-travel.jnto.go.jp/en/destinations/kyushu/nagasaki/nagasaki-city-and-around/",
+    "image": "",
+    "description": "A memorial landscape dedicated to peace and remembrance.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nikko-nikko-toshogu-shrine",
+    "name": "Nikko Toshogu Shrine",
+    "destination": "Japan",
+    "city": "Nikko",
+    "area": "Sannai",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Culture",
+      "Architecture"
+    ],
+    "url": "https://www.japan.travel/en/destinations/kanto/tochigi/nikko-area/",
+    "image": "",
+    "description": "An ornate shrine complex dedicated to Tokugawa Ieyasu.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nikko-shinkyo-bridge",
+    "name": "Shinkyo Bridge",
+    "destination": "Japan",
+    "city": "Nikko",
+    "area": "Sannai",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/destinations/kanto/tochigi/nikko-area/",
+    "image": "",
+    "description": "The red sacred bridge near Nikko’s shrine district.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nikko-kegon-falls",
+    "name": "Kegon Falls",
+    "destination": "Japan",
+    "city": "Nikko",
+    "area": "Chuzenji Onsen",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Photography"
+    ],
+    "url": "https://www.visitnikko.jp/en/spots/kegon-falls/",
+    "image": "",
+    "description": "A dramatic waterfall below Lake Chuzenji.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nikko-lake-chuzenji",
+    "name": "Lake Chuzenji",
+    "destination": "Japan",
+    "city": "Nikko",
+    "area": "Oku-Nikko",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Relaxation",
+      "Photography"
+    ],
+    "url": "https://www.visitnikko.jp/en/spots/lake-chuzenji/",
+    "image": "",
+    "description": "Mountain-lake scenery and shoreline walking.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kamakura-great-buddha-of-kamakura",
+    "name": "Great Buddha of Kamakura",
+    "destination": "Japan",
+    "city": "Kamakura",
+    "area": "Hase",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Culture",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/spot/1588/",
+    "image": "https://res-1.cloudinary.com/jnto/image/upload/w_1000,h_667,c_fill,f_auto,fl_lossy,q_auto/v1648115811/kanagawa/H_00586-2_001",
+    "description": "The outdoor bronze Buddha at Kotoku-in.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kamakura-tsurugaoka-hachimangu",
+    "name": "Tsurugaoka Hachimangu",
+    "destination": "Japan",
+    "city": "Kamakura",
+    "area": "Yukinoshita",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Culture"
+    ],
+    "url": "https://www.japan.travel/en/spot/1581/spot/1581/",
+    "image": "",
+    "description": "The shrine at the heart of historic Kamakura.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kamakura-hasedera-temple",
+    "name": "Hasedera Temple",
+    "destination": "Japan",
+    "city": "Kamakura",
+    "area": "Hase",
+    "category": "Attractions",
+    "tags": [
+      "Culture",
+      "Nature",
+      "Photography"
+    ],
+    "url": "https://faq.japan-travel.jnto.go.jp/en/spot/1592/",
+    "image": "https://res-2.cloudinary.com/jnto/image/upload/w_1000,h_667,c_fill,f_auto,fl_lossy,q_auto/v1595993033/kanagawa/Kanagawa256_13",
+    "description": "Temple gardens and views near the coast.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kamakura-komachi-dori-street",
+    "name": "Komachi-dori Street",
+    "destination": "Japan",
+    "city": "Kamakura",
+    "area": "Komachi",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Shopping"
+    ],
+    "url": "https://www.japan.travel/en/destinations/kanto/kanagawa/kamakura-and-around/",
+    "image": "",
+    "description": "A walkable shopping and snacking street near the station.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hakodate-hakodate-morning-market",
+    "name": "Hakodate Morning Market",
+    "destination": "Japan",
+    "city": "Hakodate",
+    "area": "Station area",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Shopping"
+    ],
+    "url": "https://www.hakodate.travel/en/sightseeing-spots/activity/fishing-for-fresh-squid-hakodate-morning-market/",
+    "image": "",
+    "description": "Start the day browsing seafood and local specialties.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hakodate-goryokaku-park",
+    "name": "Goryokaku Park",
+    "destination": "Japan",
+    "city": "Hakodate",
+    "area": "Goryokaku",
+    "category": "Nature",
+    "tags": [
+      "History",
+      "Nature",
+      "Photography"
+    ],
+    "url": "https://www.hakodate.travel/en/sightseeing-spots/view/goryokaku-park/",
+    "image": "https://www.hakodate.travel/en/wp-content/uploads/2022/12/DSC_2635-1536x1024.jpg",
+    "description": "Walk the grounds of the star-shaped former fort.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hakodate-motomachi-slopes",
+    "name": "Motomachi Slopes",
+    "destination": "Japan",
+    "city": "Hakodate",
+    "area": "Motomachi",
+    "category": "Attractions",
+    "tags": [
+      "Architecture",
+      "Photography"
+    ],
+    "url": "https://www.hakodate.travel/en/sightseeing-spots/view/slopes-in-motomachi/",
+    "image": "https://www.hakodate.travel/en/wp-content/uploads/2022/11/07b.jpg",
+    "description": "Hillside streets with views toward the harbor.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-hakodate-kanemori-red-brick-warehouses",
+    "name": "Kanemori Red Brick Warehouses",
+    "destination": "Japan",
+    "city": "Hakodate",
+    "area": "Bay Area",
+    "category": "Shopping",
+    "tags": [
+      "Shopping",
+      "Architecture"
+    ],
+    "url": "https://www.hakodate.travel/en/sightseeing-spots/shopping-spot/kanemori-red-brick-warehouse-stores/",
+    "image": "https://www.hakodate.travel/en/wp-content/uploads/2022/11/73b.jpg",
+    "description": "Browse waterfront shops in historic brick warehouses.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nagoya-nagoya-castle",
+    "name": "Nagoya Castle",
+    "destination": "Japan",
+    "city": "Nagoya",
+    "area": "Naka Ward",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Architecture"
+    ],
+    "url": "https://www.japan.travel/en/spot/1241/",
+    "image": "",
+    "description": "Explore castle grounds and the city’s samurai-era heritage.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nagoya-toyota-commemorative-museum-of-industry-and-technology",
+    "name": "Toyota Commemorative Museum of Industry and Technology",
+    "destination": "Japan",
+    "city": "Nagoya",
+    "area": "Nishi Ward",
+    "category": "Museums & art",
+    "tags": [
+      "History",
+      "Technology"
+    ],
+    "url": "https://www.japan.travel/en/destinations/tokai/aichi/nagoya-station-and-around/",
+    "image": "",
+    "description": "Follow the development of textile and automobile manufacturing.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nagoya-tokugawa-art-museum",
+    "name": "Tokugawa Art Museum",
+    "destination": "Japan",
+    "city": "Nagoya",
+    "area": "Higashi Ward",
+    "category": "Museums & art",
+    "tags": [
+      "Art",
+      "History",
+      "Culture"
+    ],
+    "url": "https://www.japan.travel/en/spot/1235",
+    "image": "",
+    "description": "Explore art and objects associated with the Tokugawa family.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nagoya-osu-shopping-district",
+    "name": "Osu Shopping District",
+    "destination": "Japan",
+    "city": "Nagoya",
+    "area": "Osu",
+    "category": "Shopping",
+    "tags": [
+      "Shopping",
+      "Food"
+    ],
+    "url": "https://www.japan.travel/en/ph/special-features/nagoya-itinerary-things-to-do/",
+    "image": "",
+    "description": "Covered shopping streets with casual local food stops.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-nagoya-atsuta-shrine",
+    "name": "Atsuta Shrine",
+    "destination": "Japan",
+    "city": "Nagoya",
+    "area": "Atsuta Ward",
+    "category": "Attractions",
+    "tags": [
+      "Culture",
+      "History"
+    ],
+    "url": "https://www.japan.travel/en/destinations/tokai/aichi/outer-nagoya/",
+    "image": "",
+    "description": "A major shrine surrounded by wooded grounds.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-naha-kokusai-dori-street",
+    "name": "Kokusai-dori Street",
+    "destination": "Japan",
+    "city": "Naha",
+    "area": "Central Naha",
+    "category": "Shopping",
+    "tags": [
+      "Shopping",
+      "Food",
+      "Nightlife"
+    ],
+    "url": "https://www.japan.travel/en/spot/587/spot/587/",
+    "image": "",
+    "description": "Naha’s main shopping and entertainment street.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-naha-makishi-public-market",
+    "name": "Makishi Public Market",
+    "destination": "Japan",
+    "city": "Naha",
+    "area": "Makishi",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Culture"
+    ],
+    "url": "https://www.japan.travel/en/sg/story/food-itinerary-nahacity/",
+    "image": "",
+    "description": "Explore Okinawan ingredients and market dining.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-naha-shurijo-castle-park",
+    "name": "Shurijo Castle Park",
+    "destination": "Japan",
+    "city": "Naha",
+    "area": "Shuri",
+    "category": "Attractions",
+    "tags": [
+      "History",
+      "Culture"
+    ],
+    "url": "https://www.japan.travel/en/sg/story/food-itinerary-nahacity/",
+    "image": "",
+    "description": "Explore the Ryukyu royal site; check current restoration access.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-naha-fukushuen-garden",
+    "name": "Fukushuen Garden",
+    "destination": "Japan",
+    "city": "Naha",
+    "area": "Kume",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Culture",
+      "Relaxation"
+    ],
+    "url": "https://www.japan.travel/en/destinations/okinawa/okinawa/naha-and-the-main-island/",
+    "image": "",
+    "description": "A Chinese-style garden reflecting Naha’s historic connections.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-naha-shikinaen-royal-garden",
+    "name": "Shikinaen Royal Garden",
+    "destination": "Japan",
+    "city": "Naha",
+    "area": "Shikina",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "History"
+    ],
+    "url": "https://www.japan.travel/en/destinations/okinawa/okinawa/naha-and-the-main-island/",
+    "image": "",
+    "description": "A landscaped retreat associated with Ryukyu royalty.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kagoshima-sengan-en-garden",
+    "name": "Sengan-en Garden",
+    "destination": "Japan",
+    "city": "Kagoshima",
+    "area": "Yoshino",
+    "category": "Nature",
+    "tags": [
+      "History",
+      "Nature",
+      "Photography"
+    ],
+    "url": "https://www.kagoshima-yokanavi.jp/en/spot/10006",
+    "image": "https://www.kagoshima-yokanavi.jp/ogp.png",
+    "description": "A historic estate with views across the bay to Sakurajima.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kagoshima-shiroyama-observatory",
+    "name": "Shiroyama Observatory",
+    "destination": "Japan",
+    "city": "Kagoshima",
+    "area": "Shiroyama",
+    "category": "Nature",
+    "tags": [
+      "Nature",
+      "Photography"
+    ],
+    "url": "https://www.japan.travel/en/destinations/kyushu/kagoshima/kagoshima-and-around/",
+    "image": "",
+    "description": "Look over the city, bay, and volcanic skyline.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kagoshima-tenmonkan",
+    "name": "Tenmonkan",
+    "destination": "Japan",
+    "city": "Kagoshima",
+    "area": "Downtown",
+    "category": "Food spots",
+    "tags": [
+      "Food",
+      "Shopping",
+      "Nightlife"
+    ],
+    "url": "https://www.japan.travel/en/destinations/kyushu/kagoshima/kagoshima-and-around/",
+    "image": "",
+    "description": "A central dining and shopping district for local flavors.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
+  },
+  {
+    "id": "jp-kagoshima-sakurajima-yogan-nagisa-park-footbath",
+    "name": "Sakurajima Yogan Nagisa Park Footbath",
+    "destination": "Japan",
+    "city": "Kagoshima",
+    "area": "Sakurajima",
+    "category": "Activities",
+    "tags": [
+      "Nature",
+      "Relaxation"
+    ],
+    "url": "https://www.kagoshima-yokanavi.jp/en/spot",
+    "image": "",
+    "description": "A footbath stop at the base of Sakurajima.",
+    "sourceLabel": "Official tourism guide",
+    "checkedAt": "2026-10-17"
   }
 ];
